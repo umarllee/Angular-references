@@ -1,0 +1,139 @@
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden; 
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol { 
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  
+.expandableTbale{
+  overflow: auto !important; 
+  max-height: 650px !important;
+  margin: 0;
+  // margin-top: -1rem;
+}
+
+.expandIcon{
+  border: none !important;
+  background-color: transparent;
+  // padding: 10px !important;
+}
+
+.downArrow{
+  color: #69c915;
+
+  animation: hamburgerRotate 2s;
+  // transform: rotate(540deg);
+}
+
+@keyframes hamburgerRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.upArrow{
+  color: #d12e2e;
+  animation: hamburgerRotateOtherside 2s;
+
+}
+
+@keyframes hamburgerRotateOtherside {
+  0% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+.rowTable{
+  overflow: auto !important;
+   max-height: 300px !important; 
+   width: 100% !important;
+}
+
+.expandableTbale tr td{
+  width: 1% !important;
+}
+
+.expandableTbale::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+}
+
+.rowTable th.mat-header-cell {
+  background-color: #b7b6b6;
+  color: #fff;
+  text-align: left;
+}
+
+.rowTable::-webkit-scrollbar{
+  width: 5px;
+  height: 5px;
+}
+
+.expandableTbale::-webkit-scrollbar-track ,
+.rowTable::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.expandableTbale::-webkit-scrollbar-thumb{
+  background-color: #154d53 !important;
+  border-radius: 3px;
+}
+
+.rowTable::-webkit-scrollbar-thumb {
+  background-color: #afafaf !important;
+  border-radius: 3px;
+}
+
+

@@ -1,0 +1,27 @@
+<div class="d-flex flex-wrap">
+  <div style="display: block;" class="mt-5">
+    <canvas baseChart width="400" height="400" [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
+      [legend]="lineChartLegend">
+    </canvas>
+  </div>
+
+
+  <div style="display: block;" class="ms-4 mt-5">
+    <canvas baseChart [type]="'pie'" [datasets]="pieChartDatasets" [labels]="pieChartLabels" [options]="pieChartOptions"
+      [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+    </canvas>
+  </div>
+
+  <div id="chart1" class="ms-4 mt-5"></div>
+  <div id="chart" class="ms-4 mt-5"></div>
+
+  <div class="row d-flex justify-content-between">
+    <div style="display: block;" class="mt-5  col-md-5 ms-4">
+      <canvas baseChart [datasets]="bubbleChartDatasets" [options]="bubbleChartOptions" [legend]="bubbleChartLegend"
+        [type]="'bubble'">
+      </canvas>
+    </div>
+
+  </div>
+
+</div>

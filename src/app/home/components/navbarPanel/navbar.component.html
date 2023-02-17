@@ -1,0 +1,11 @@
+<nav class="mt-2">
+  <mat-form-field #div *ngFor="let element of navBarDatas; let i = index;" class="mx-1 ms-4">
+    <mat-label style="font-size: 19px;">{{element.navName}}</mat-label>
+    <mat-select (mouseenter)="openMenu(i)" #select>
+      <mat-option (mouseleave)="closeMenu(i)" value="optionIndex" *ngFor="let option of navOptions; let optionIndex = index;">
+        {{option.data}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</nav>

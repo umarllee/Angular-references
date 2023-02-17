@@ -1,0 +1,43 @@
+<app-navigation></app-navigation>
+<app-navbarPanel></app-navbarPanel>
+
+<div class="py-2 px-4">
+  <h1 class="mt-4"> *** Counters cards </h1>
+  <ul class=" mt-4 d-flex justify-content-between">
+    <li class="col-2 row " style="width:23%; margin-left: 0.1%;"
+      *ngFor="let element of filterCardsData; let i = index;">
+      <mat-card class="mat-elevation-z8" style="padding-right: 0;" matRipple [matRippleRadius]="8"
+        [matRippleColor]="'#1a9cc9'">
+        <mat-card-title-group>
+          <mat-card-title> {{element.Operation}}</mat-card-title>
+        </mat-card-title-group>
+        <mat-card-content class="mt-3 mb-4 d-flex justify-content-between">
+          <div class="col-6" style="font-size: 35px;">
+            {{element.counter}}
+            <p style="font-size: 15px;" class="mt-2">tracking</p>
+          </div>
+          <div class="col-4 d-flex flex-column justify-content-center me-2" style="margin-top: -5%;">
+            <span style="font-size: 3.4rem; color: #4f4f4f;" class="text-center">{{element.counterContainer}}</span>
+            <span style="font-size: 15px;" class="mt-2 text-center">containers</span>
+          </div>
+        </mat-card-content>
+        <mat-card-footer class="ps-3 d-flex">
+          <p class="rateCard px-1 text-center rounde me-2 text-light" [style.background-color]="element.ColorCode">
+            {{element.Percentage}}%
+          </p> based on the selected date.
+        </mat-card-footer>
+      </mat-card>
+    </li>
+  </ul>
+</div>
+
+
+<div class="py-2 px-4" id="htmlData">
+  <h1 class="mt-4 text-danger fw-bold"> *** Counters cards </h1>
+  <p class="text-primary">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dicta tempora explicabo saepe sequi. Excepturi a
+    consequuntur amet architecto quo inventore molestiae, ad quod similique aut ducimus fugiat quae earum.
+  </p>
+</div>
+
+<button (click)="Pdf()">SAVE</button>

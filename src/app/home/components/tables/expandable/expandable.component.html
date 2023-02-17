@@ -1,0 +1,76 @@
+<div class=" pt-4 ">
+
+  <div class=" mat-elevation-z8 row col-lg-11 mx-auto expandableTbale">
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+      </ng-container>
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button aria-label="expand row " class="expandIcon"
+            (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+            <!-- <span *ngIf="expandedElement !== element">down</span> -->
+            <!-- <span *ngIf="expandedElement === element">up</span> -->
+
+            <svg [ngClass]="{'downArrow': expandedElement !== element, 'upArrow': expandedElement === element}"
+              xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+              class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+            </svg>
+
+
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+          <div class="example-element-detail mat-elevation-z8 "
+            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+            <div class="rowTable ">
+              <table mat-table [dataSource]="dataSourceNormal" class="mat-elevation-z8">
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef> Weight </th>
+                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </div>
+
+
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand; sticky: true"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element" (click)="expandRow(element)">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+  </div>
+
+
+</div>

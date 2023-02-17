@@ -1,0 +1,474 @@
+// .commonPopUpContainer {
+//   width: 166vh;
+//   height: 85vh;
+//   overflow-x: hidden;
+// }
+
+.header {
+  padding-left: 1%;
+  background-color: #146F90;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.show-shipType-row {
+  transition: 0.2s !important;
+  display: flex;
+}
+
+.btnClose {
+  margin-right: 1%;
+  padding: 0.5%;
+  border: none;
+  background-color: #146F90;
+}
+
+.bi {
+  color: #fff;
+}
+
+.addItemsCommonConteiner {
+  margin: 3% auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 160vh;
+}
+
+.btnNew {
+  margin: 2%;
+  width: 4%;
+  background-color: rgb(0, 132, 255);
+  border-radius: 10px;
+  border: none;
+  height: 35px;
+}
+
+table {
+  background-color: #fff;
+  border-collapse: separate;
+
+}
+
+thead tr th {
+  padding: 10px;
+  background-color: #dfdfdf;
+  color: #707070;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+td svg,
+td button {
+  border: none;
+  color: #146F90;
+}
+
+tbody {
+  border-spacing: 10px 0;
+}
+
+#input-file {
+  display: none;
+}
+
+.upload-btn {
+  display: block;
+  text-align: center;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  background-color: #F4F9FB;
+}
+
+.upload-btn svg {
+  color: black;
+  transform: rotate(45deg);
+}
+
+.matField {
+  outline: none;
+}
+
+::ng-deep .mat-form-field-label {
+  margin: 5% !important;
+}
+
+// ::ng-deep.mat-form-field-ripple {
+//   display: none !important;
+// } 
+
+::ng-deep.mat-datepicker-toggle {
+  display: none !important;
+}
+
+// ::ng-deep .mat-form-field-underline {
+//   display: none !important;
+// }
+
+::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+}
+
+.mat-tab-label-active {
+  display: none;
+}
+
+.label-before {
+  line-height: 15px;
+  font-size: 12px;
+  top: -10px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 0 6px;
+  left: 19px;
+  border: 0.5px solid #154d5325;
+}
+
+.field {
+  position: relative;
+
+  mat-label::before,
+  label::before {
+    content: attr(title);
+    line-height: 15px;
+    font-size: 12px;
+    top: -10px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 0 6px;
+    left: 19px;
+    color: #777;
+    border: 0.5px solid #154d5325;
+    transition: 300ms all;
+  }
+
+  input,
+  select {
+    width: 100%;
+    line-height: 35px;
+    height: 43px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    background-color: #F4F9FB;
+    font-size: 16px;
+    color: #222;
+    border: 1px solid #154d531d;
+    border-radius: 15px;
+
+    &:focus {
+      outline: 0;
+      border-color: #2F7B96;
+    }
+
+    &:valid+label::before {
+      @extend .label-before;
+      content: attr(data-title);
+    }
+
+    &:focus+label::before {
+      @extend .label-before;
+      color: #2F7B96;
+    }
+  }
+
+}
+
+.line-container .field {
+
+  input,
+  select {
+    width: 100%;
+    line-height: 35px;
+    height: 43px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    background-color: #F4F9FB;
+    font-size: 14px;
+    color: #222;
+    border: 1px solid rgba(39, 125, 136, 0.671);
+    border-radius: 15px;
+
+    &:focus {
+      outline: 0;
+      border-color: #2F7B96;
+    }
+
+    &:valid+label::before {
+      @extend .label-before;
+      content: attr(data-title);
+    }
+
+    &:focus+label::before {
+      @extend .label-before;
+      color: #2F7B96;
+    }
+  }
+}
+
+.shipmentForm {
+  height: 565px !important;
+  margin-bottom: 3%;
+  padding-bottom: 2%;
+}
+
+.form-header {
+  margin: 20px 0 0 0px !important;
+}
+
+.selectfileInputPay {
+  // margin-left: -137px; 
+  position: absolute !important;
+  width: 92% !important;
+  opacity: 0;
+}
+
+.selectfileLabelPay {
+  position: absolute !important;
+  margin-top: 12px;
+  margin-left: -25px;
+}
+
+.form-header .col-lg-2 {
+  width: 15.277% !important;
+}
+
+.form-header .col-lg-3 {
+  width: 22.9%;
+}
+
+.width-textArea {
+  width: 140px !important;
+  max-width: 160px !important;
+  padding: 0 20px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-paginator {
+  border-radius: 15px;
+  position: sticky;
+  bottom: 0;
+}
+
+.mat-column-carrier {
+  width: 20%;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #146F90 !important;
+}
+
+.muted {
+  background-color: #e5e5e5;
+}
+
+td {
+  text-align: center !important;
+}
+
+// ::ng-deep .mat-header-row,
+tr.mat-row {
+  height: 50px !important;
+}
+
+// tr.mat-row, tr.mat-footer-row {
+//   height: 48px;
+// }
+.mat-cell {
+  font-size: 14px;
+}
+
+.example-container {
+  margin-top: 2%;
+}
+
+.acceptButtons-con {
+  display: flex;
+  height: 20%;
+  line-height: 50%;
+  bottom: 0;
+}
+
+::ng-deep .contryInput {
+  margin-top: -2%;
+  background-color: rgb(226, 226, 226);
+  height: 35px;
+}
+
+::ng-deep .form-check-input {
+  width: 13% !important;
+  height: 70% !important;
+  margin: 1% 5% !important;
+}
+
+// ::ng-deep .field input[type=checkbox]:checked {
+//   background-color: #146F90 !important;
+// }
+
+::ng-deep .field {
+  margin: 1% 0;
+}
+
+.isHiddenField {
+  display: none;
+}
+
+.isNotHiddenField {
+  display: inline-block;
+}
+
+
+
+@media (max-width: 1340px) and (min-width: 1000px) {
+  .commonPopUpContainer {
+    width: 140vh;
+    height: 85vh;
+    overflow-x: hidden;
+  }
+}
+
+
+.save {
+  margin-top: 20px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 10px 35px;
+  height: 45px;
+  color: white;
+  background: #8fc93a;
+}
+
+.cancel {
+  margin-left: 2%;
+  margin-top: 20px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 10px 30px;
+  background-color: rgb(238, 46, 46);
+  color: #fff;
+}
+
+.line-container {
+  max-height: 600px !important;
+  overflow: auto !important;
+}
+
+
+.line-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.line-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.line-container::-webkit-scrollbar-thumb {
+  background-color: #154d53 !important;
+  border-radius: 3px;
+}
+
+.mat-header-row th:nth-child(1), .mat-header-row th:last-child  {
+  width: 20%;
+}
+
+// .btn-check:checked , .btn-outline-primary{
+//   border-radius: 15px;
+//    width: 100%;
+//    font-size: 18px;
+//    outline: none;
+// }
+
+// .field input[type=checkbox]:valid + label::before{
+//   display: none;
+// }
+
+.operationBtns {
+  margin-top: auto !important;
+}
+
+.col-7 {
+  width: 63% !important;
+}
+
+.field input[type=checkbox]:valid+label::before {
+  display: none;
+}
+
+.custom-checkbox {
+
+  input#status {
+    display: none;
+
+    +label {
+      height: 100%;
+      width: 100%;
+
+      >.status-switch {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background-color: rgb(180, 180, 180);
+        color: white;
+        transition: all 0.5s ease;
+        padding: 3px;
+        border-radius: 15px;
+
+        &:before,
+        &:after {
+          border-radius: 15px;
+          height: calc(100% - 6px);
+          width: calc(50% - 3px);
+          display: flex;
+          align-items: center;
+          position: absolute;
+          justify-content: center;
+          transition: all 0.3s ease;
+        }
+
+        &:before {
+          background-color: white;
+          color: black;
+          box-shadow: 0 0 4px 4px rgba(#000, 0.2);
+          left: 3px;
+          z-index: 10;
+          content: attr(data-unchecked);
+        }
+
+        &:after {
+          right: 0;
+          content: attr(data-checked);
+        }
+      }
+    }
+
+    // Checked stae
+    &:checked+label>.status-switch {
+      background-color: #146F90 !important;
+
+      &:after {
+        left: 0;
+        content: attr(data-unchecked);
+      }
+
+      &:before {
+        color: #146F90;
+        left: 50%;
+        content: attr(data-checked);
+      }
+    }
+  }
+}
+
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  // padding-right: 24px;
+  width: 100px !important;
+}

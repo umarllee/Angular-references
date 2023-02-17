@@ -1,0 +1,613 @@
+.loadHeaderRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loadedText {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.btnNew {
+  height: 35px;
+  margin-top: 15px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  color: white;
+  background: #1a9cc9;
+}
+
+.width-textArea {
+  width: 140px !important;
+  max-width: 160px !important;
+  padding: 0 20px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-column-carrier {
+  width: 20%;
+}
+
+td,
+table {
+  text-align: center !important;
+}
+
+// ::ng-deep .mat-form-field-infix {
+//   padding: 1em 0 !important;
+// }
+
+.mat-paginator {
+  border-radius: 15px;
+  position: sticky;
+  bottom: 0;
+}
+
+.line-container {
+  max-height: 520px !important;
+  overflow: auto !important;
+}
+
+.line-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.line-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.line-container::-webkit-scrollbar-thumb {
+  background-color: #154d53 !important;
+  border-radius: 3px;
+}
+
+.field-loaded {
+  position: relative;
+
+  label::before {
+    content: attr(title);
+    font-size: 12px;
+    top: 10px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 0 6px;
+    left: 19px;
+    color: #777;
+    border: 0.5px solid #154d5325;
+    transition: 300ms all;
+  }
+
+  input,
+  select {
+    width: 100%;
+    line-height: 39px;
+    height: 48px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    background-color: #F4F9FB;
+    font-size: 16px;
+    color: #222;
+    border: 1px solid #154d531d;
+    border-radius: 15px;
+
+    &:focus {
+      outline: 0;
+      border-color: #2F7B96;
+    }
+  }
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #3d8abd;
+}
+
+::ng-deep.mat-form-field-ripple,
+.mat-form-field-underline {
+  // display: none !important;
+  color: #3d8abd !important;
+  background-color: #3d8abd !important;
+}
+
+.statusColor {
+  display: inline-block;
+  height: 13px;
+  width: 13px;
+  border-radius: 2px;
+}
+
+td:nth-child(2) {
+  text-align: left !important;
+  padding-left: 50px !important;
+}
+
+
+::ng-deep .mat-select-panel .mat-option {
+  font-size: inherit;
+  height: 4em !important;
+}
+
+.table-con{
+  width: 20%; 
+  max-height: 30px;
+  height: 50px;
+  border: 2px solid black;
+}
+
+.hower-td:hover {
+  border: 1.2px solid red !important;
+}
+
+.forward-color {
+  background-color: rgb(228, 255, 228) !important;
+}
+
+.backward-color {
+  background-color: rgb(255, 255, 204) !important;
+}
+
+
+// .commonPopUpContainer {
+//   width: 100%;
+//   height: 85vh;
+//   overflow-x: hidden;
+// }
+
+.header {
+  padding-left: 1%;
+  background-color: #146F90;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fieldsCon {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5% 1.5%;
+  width: 22%;
+  height: 50px;
+}
+
+.fieldsCon input,
+.fieldsCon2 input {
+  border: none;
+  outline: none;
+  font-size: 17px;
+  margin: 0 1%;
+  padding: 8px;
+  border-radius: 15px;
+  background-color: #F4F9FB;
+  border: 1px solid rgb(211, 211, 211);
+}
+
+.fieldsCon input :focus .fieldsCon2 input :focus {
+  border: 1px solid #146F90 !important;
+}
+
+.btnClose {
+  margin-right: 1%;
+  padding: 0.5%;
+  border: none;
+  background-color: #146F90;
+}
+
+.bi {
+  color: #fff;
+}
+
+.addItemsCommonConteiner {
+  margin: 3% auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 160vh;
+}
+
+.fieldsCon2 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2.5%;
+  width: 20%;
+}
+
+.btnNew {
+  margin: 2%;
+  width: 4%;
+  background-color: rgb(0, 132, 255);
+  border-radius: 10px;
+  border: none;
+  height: 35px;
+}
+
+table {
+  background-color: #fff;
+  border-collapse: separate;
+
+}
+
+tr{
+  font-size: 13px;
+}
+
+td svg,
+td button {
+  border: none;
+  color: #146F90;
+}
+
+tbody {
+  border-spacing: 10px 0;
+}
+
+#input-file {
+  display: none;
+}
+
+.upload-btn {
+  display: block;
+  text-align: center;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  background-color: #F4F9FB;
+}
+
+.upload-btn svg {
+  color: black;
+  transform: rotate(45deg);
+}
+
+.matField {
+  outline: none;
+}
+
+::ng-deep .mat-form-field-label {
+  margin: 5% !important;
+}
+
+// ::ng-deep .mat-focused .mat-form-field-label {
+//   color: #146f90 !important;
+//   background-color: rgb(252, 253, 253) !important;
+//   width: 50% !important;
+//   margin: 6% 3% !important;
+//   padding: 1% !important;
+//   border: 1px solid rgb(211, 211, 211) !important;
+//   border-radius: 5px !important;
+// }
+
+::ng-deep.mat-form-field-ripple {
+  display: none !important;
+} 
+
+::ng-deep.mat-datepicker-toggle {
+  display: none !important;
+}
+
+::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+  overflow-y: auto;
+}
+
+::ng-deep .header-table {
+  font-size: 11px !important;
+}
+
+.mat-tab-label-active {
+  display: none;
+}
+
+.label-before {
+  line-height: 15px;
+  font-size: 12px;
+  top: -10px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 0 6px;
+  left: 19px;
+  border: 0.5px solid #154d5325;
+}
+
+.field, .download {
+  position: relative;
+
+  mat-label::before,
+  label::before {
+    content: attr(title);
+    position: absolute;
+    top: 3px;
+    left: 25px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #777;
+    transition: 300ms all;
+    background-color: #F4F9FB;
+  }
+
+  input,
+  select {
+    width: 100%;
+    line-height: 35px;
+    // height: 37px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    background-color: #F4F9FB;
+    font-size: 16px;
+    color: #222;
+    border: 1px solid #154d531d;
+    border-radius: 15px;
+
+    &:focus {
+      outline: 0;
+      border-color: #2F7B96; 
+    }
+
+    &:valid+label::before {
+      @extend .label-before;
+      content: attr(data-title);
+    }
+
+    &:focus+label::before {
+      @extend .label-before;
+      color: #2F7B96;
+    } 
+  }
+
+}
+
+.shipmentForm {
+  border-bottom: 1px dashed #9c9c9c;
+  margin-bottom: 1%;
+  padding-bottom: 3%;
+}
+
+.form-header {
+  margin: 25px 0 0 0px !important;
+}
+
+.selectfileInputPay {
+  // margin-left: -137px; 
+  position: absolute !important;
+  width: 92% !important;
+  opacity: 0;
+}
+
+
+.selectfileLabelPay {
+  position: absolute !important;
+  margin-top: 15px;
+  margin-left: -40px;
+}
+
+// tr.mat-row td {
+//     border-bottom-color: transparent;
+// }
+
+.width-textArea {
+  width: 140px !important;
+  max-width: 160px !important;
+  padding: 0 20px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-paginator {
+  border-radius: 15px;
+  font-size: 11px;
+  position: sticky;
+  bottom: 0; 
+}
+
+.mat-column-carrier {
+  width: 20%;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #146F90 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  background-color: #0d303db7 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: #1a9cc9 !important;
+  ;
+}
+
+::ng-deep .select2 {
+  width: 100%;
+  line-height: 39px;
+  height: 40px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  background-color: #F4F9FB;
+  font-size: 14px;
+  color: #222;
+  border: 1px solid #154d531d;
+  border-radius: 15px;
+
+  &:focus {
+    outline: 0;
+    border-color: #2F7B96;
+  }
+}
+
+::ng-deep .select2-selection {
+  border: none !important;
+  background-color: #F4F9FB !important;
+
+}
+
+::ng-deep .select2-selection__arrow {
+  top: 10px !important;
+
+}
+
+::ng-deep .select2-selection__rendered {
+  margin-top: 10px;
+
+}
+
+.muted {
+  background-color: #e5e5e5;
+}
+
+td {
+  text-align: center !important;
+}
+
+::ng-deep .mat-header-row,
+::ng-deep .mat-row {
+  min-height: 20px;
+  font-size: 12px !important;
+}
+
+.mat-cell {
+  font-size: 14px;
+}
+
+.acceptButtons-con {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  height: 12%;
+  line-height: 50%;
+  margin-left: 60%;
+}
+
+.acceptButtons-con button {
+  height: 50%;
+}
+
+.cancel-btn {
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 10px 35px;
+  color: #1a9cc9;
+  border: 1px solid #1a9cc9;
+  margin-left: 5%;
+
+}
+
+
+.example-full-width {
+  width: 20%;
+}
+
+.example-option-img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+[dir='rtl'] .example-option-img {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+::ng-deep .contryInput {
+  // margin-top: -2%;
+  background-color: rgb(226, 226, 226);
+  height: 35px;
+}
+
+
+
+// ::ng-deep .field {
+//   // margin: 0.5% 0;
+// }
+
+th,
+td {
+  text-align: center;
+}
+
+.save { 
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 10px 35px;
+  color: white;
+  background: #8fc93a;
+}
+
+.cancel {
+  width: 100%; 
+  margin-left: 2%;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 10px 30px;
+  background-color: rgb(238, 46, 46);
+  color: #fff;
+}
+
+.line-container {
+  max-height: 600px !important;
+  overflow: auto !important;
+}
+
+.line-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.line-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.line-container::-webkit-scrollbar-thumb {
+  background-color: #154d53 !important;
+  border-radius: 3px;
+}
+
+// ::ng-deep .mat-paginator-container{
+//   position: sticky !important;
+//   bottom: 0 !important;
+//   left: 0 !important;
+//   background-color: yellow !important;
+//   z-index: 999 !important;
+// }
+
+
+.createOperation {
+  width: 90%;
+  height: 50px;
+  display: flex;
+  font-size: 18px;
+  padding-left: 9%;
+  color: #fff;
+  cursor: pointer;
+}
+
+.col-7{
+  width: 55.5% !important;
+}
+
+.openHint{ 
+  transition: 0.5s;
+}
+
+.hint{
+  position: absolute; 
+  z-index: 1;
+  visibility: hidden;
+  width: 400px !important;
+  border-radius: 10px; 
+  margin-top: -15%;
+}
+
+.excelDownload:hover .hint{
+  visibility: visible;
+} 

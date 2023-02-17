@@ -1,0 +1,59 @@
+li {
+  list-style:  none;
+  font-size: 16px;
+}
+
+// .router-active{
+//   color: #e4ba15 !important;
+//   font-weight: 500 !important;
+//   transition: 0.4s !important;
+// }
+
+// .router-active::before {
+//   content: "";
+//   display: inline-block;
+//   position: absolute;
+//   width: 7px;
+//   height: 7px;
+//   margin: 20px 0 0 15px;
+//   border-radius: 100%;
+//   background-color: #e4ba15 !important;
+// }
+
+:host {
+  display: block;
+}
+
+.card {
+  border-radius: 5px;
+  height: 180px;
+  // cursor: pointer;
+  position: relative; 
+  transform-style: preserve-3d;
+  border: 1px solid #99c597;
+}
+
+.face {
+  position: absolute;  
+  border-radius: inherit;
+  backface-visibility: hidden;
+}
+ 
+.front {
+  transform: rotateY(180deg);
+}
+ 
+
+ul{
+  flex-wrap: wrap;
+  max-width: 1500px !important;
+  margin: 0;
+  padding: 0;
+  list-style:  none;
+}
+
+.col-3{
+  width: 23.5%;
+}
+
+
