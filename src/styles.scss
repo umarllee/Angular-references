@@ -388,8 +388,7 @@ td.mat-footer-cell:first-of-type {
 th.mat-header-cell:last-of-type,
 td.mat-cell:last-of-type,
 td.mat-footer-cell:last-of-type {
-  padding-right: 0 !important;
-  width: 9%;
+  padding-right: 20px !important;
 }
 
 th.mat-header-cell:first-of-type,
@@ -574,8 +573,98 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.dialogHeader {
+  position: sticky !important;
+background-color: cornflowerblue;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  top: 0;
+  z-index: 3;
+}
 
-svg {
+.dialogHeader svg{
+  color: #fff;
+}
+
+.card svg, .nav svg {
   color: #acdda9;
 }
+
+.line-container .mat-header-cell:not(:last-child) {
+  font-weight: bold;
+  color: #000;
+  text-transform: uppercase;
+  text-align: center !important;
+  min-width: 130px !important;
+}
+
+.line-container .mat-header-cell:first-child{
+  font-weight: bold;
+  color: #000;
+  text-transform: uppercase;
+  text-align: center !important;
+  min-width: 30px !important;
+}
+
+.line-container td.mat-cell:first-child {
+  // font-weight: bold;
+  color: #000;
+  // text-transform: uppercase;
+  text-align: center !important;
+  min-width: 30px !important;
+}
+
+
+.line-container{
+  max-height: 450px !important;
+  overflow: auto !important;
+  // margin-top: -1rem;
+}
+
+::ng-deep .cdk-global-scrollblock {
+  position: static;
+  overflow: hidden !important;
+  display: none;
+}
+.line-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.line-container::-webkit-scrollbar-track{
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.line-container::-webkit-scrollbar-thumb {
+  background-color: #154d53 !important;
+  border-radius: 3px;
+}
+
+.addBtn {
+  height: 50px !important;
+  width: 50px !important;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  color: white;
+  background: #6495ed;
+  border: 1px solid rgb(163, 163, 163);
+}
+
+.save {
+  width: 3rem !important;
+  height: 3rem;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  color: white;
+  background: #8fc93a;
+}
+

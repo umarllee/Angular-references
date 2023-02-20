@@ -1,6 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { HyperPopUpComponent } from './hyper-pop-up/hyper-pop-up.component';
+import { ColumsComponent } from './colums/colums.component';
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
 
 interface PeriodicElement {
   name: string;
@@ -93,31 +97,30 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ]
 
 interface PeriodicElementNormal {
-  name: string;
+  redirectName: string;
   position: number;
-  weight: number;
+  hyperlink: string;
+  hyperlinkName: string;
   symbol: string;
+  link: string;
+  redirect: string;
 }
 
 const ELEMENT_DATANormal: PeriodicElementNormal[] = [
-  {position: 1, name: 'Hydrogen 1', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium 1', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium 1', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium 1', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  { position: 1, redirectName: 'Modules', hyperlink: '', hyperlinkName: 'Link 1', symbol: 'H', link: 'https://www.blobmaker.app/', redirect: '/home' },
+  { position: 2, redirectName: 'Tables', hyperlink: '', hyperlinkName: 'Link 2', symbol: 'He', link: 'https://neumorphism.io/#e0e0e0', redirect: '/home/tables' },
+  { position: 3, redirectName: 'Charts', hyperlink: '', hyperlinkName: 'Link 3', symbol: 'Li', link: 'https://blog.hubspot.com/website/css-animation-examples', redirect: '/home/chart' },
+  { position: 4, redirectName: 'Beryllium 1', hyperlink: '', hyperlinkName: '', symbol: 'Be', link: 'https://animista.net/play/basic/shadow-drop', redirect: '' },
 ];
 
 const ELEMENT_DATANormal2: PeriodicElementNormal[] = [
-  {position: 1, name: 'Hydrogen 2', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium 2', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium 2', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium 2', weight: 9.0122, symbol: 'Be'},
+  { position: 1, redirectName: 'Hydrogen 2', hyperlink: '', hyperlinkName: '', symbol: 'H', link: 'https://www.minimamente.com/project/magic/#google_vignette', redirect: '' },
+  { position: 2, redirectName: 'Helium 2', hyperlink: '', hyperlinkName: '', symbol: 'He', link: 'http://dwarcher.github.io/reboundgen/examples/', redirect: '' },
+  { position: 3, redirectName: 'Lithium 2', hyperlink: '', hyperlinkName: '', symbol: 'Li', link: '', redirect: '' },
+  { position: 4, redirectName: 'Beryllium 2', hyperlink: '', hyperlinkName: '', symbol: 'Be', link: '', redirect: '' },
 ];
+
+
 
 @Component({
   selector: 'app-expandable',
@@ -125,42 +128,127 @@ const ELEMENT_DATANormal2: PeriodicElementNormal[] = [
   styleUrls: ['./expandable.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
 })
+
 export class ExpandableComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
-  columnsToDisplayWithExpand = ['expand', ...this.columnsToDisplay];
-  expandedElement!: PeriodicElement | null; 
-  constructor() { }
+  columnsToDisplayWithExpand: any[] = [];
+  initialColumnsToDisplayWithExpand = ['expand', ...this.columnsToDisplay];
+  expandedElement!: PeriodicElement | null;
+  constructor(
+    private dialog: MatDialog,
+  ) { }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSourceNormal: any;
 
-  ngOnInit(): void {
+  isFilter = false;
+
+  dialogref?: MatDialogRef<HyperPopUpComponent>;
+  dialogrefColums?: MatDialogRef<ColumsComponent>;
+  
+ngOnInit(): void {
+  this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+
+  const doc = new jsPDF();
+
+}
+
+expandRow(element: any) {
+  this.expandedElement = this.expandedElement === element ? null : element
+
+  if (element.position == 1) {
+    this.dataSourceNormal = ELEMENT_DATANormal;
   }
 
-  expandRow(element: any){
-    
-    this.expandedElement = this.expandedElement === element ? null : element
-    
-    if(element.position == 1){ 
-      this.dataSourceNormal = ELEMENT_DATANormal;
-    }
-
-   else if(element.position == 2){  
-      this.dataSourceNormal = ELEMENT_DATANormal2;
-    }
-
-    else{
-      this.dataSourceNormal = '';
-    }
-    
-    // alert();
+  else if (element.position == 2) {
+    this.dataSourceNormal = ELEMENT_DATANormal2;
   }
+
+  else {
+    this.dataSourceNormal = '';
+  }
+
+  // alert();
+}
+
+openPopup(element: PeriodicElementNormal) {
+  this.dialogref = this.dialog.open(HyperPopUpComponent,
+    {
+      disableClose: true,
+      hasBackdrop: true,
+      width: '50%',
+      height: 'auto',
+      autoFocus: false,
+      data: {
+        id: element
+      }
+
+    });
+}
+
+openColumns() {
+  this.dialogrefColums = this.dialog.open(ColumsComponent, {
+    disableClose: true,
+    hasBackdrop: true,
+    width: '30%',
+    height: 'auto',
+    autoFocus: false,
+    data: {
+      columns: this.columnsToDisplayWithExpand
+    }
+  })
+
+  this.dialogrefColums.afterClosed().subscribe((dt: any) => {
+    if ((localStorage.getItem('colums')?.split(','))?.length) {
+      this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+      this.dataSource = this.dataSource;
+      this.isFilter = true;
+    }
+
+    else {
+      localStorage.setItem('colums', this.initialColumnsToDisplayWithExpand.toString());
+    }
+  })
+}
+
+removeFilter() {
+  this.columnsToDisplayWithExpand = this.initialColumnsToDisplayWithExpand;
+  this.isFilter = false;
+}
+
+Pdf() {
+
+  let DATA: any = document.getElementById('htmlData');
+  html2canvas(DATA).then((canvas) => {
+    let fileWidth = 208;
+    const pageHeight = 295;
+    const imgHeight = (canvas.height * fileWidth) / canvas.width;
+    let heightLeft = imgHeight;
+    heightLeft -= pageHeight;
+    const FILEURI = canvas.toDataURL('image/png');
+
+    let PDF = new jsPDF('p', 'mm', 'a4');
+    var width = PDF.internal.pageSize.getWidth();
+    var height = PDF.internal.pageSize.getHeight();
+    let position = 0;
+    PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, imgHeight, '', 'FAST');
+    while (heightLeft >= 0) {
+      position = heightLeft - imgHeight;
+      PDF.addPage();
+      PDF.addImage(canvas, 'PNG', 0, position, fileWidth, imgHeight, '', 'FAST');
+      heightLeft -= pageHeight;
+    }
+    PDF.save('test.pdf');
+  });
+}
+
+
 
 }

@@ -1,0 +1,54 @@
+<div>
+  <header class="dialogHeader mat-elevation-z6 addDialogHeader d-flex justify-content-end" style="margin: 0;" cdkDrag
+    cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+
+    <svg (click)="onCloseDialog()" style="cursor: pointer" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+      fill="currentColor" class=" bi bi-x-lg" viewBox="0 0 16 16">
+      <path
+        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+    </svg>
+  </header>
+</div>
+
+
+<div class="p-3">
+  <div class="row " style="margin: 0;">
+    <div class=" mat-elevation-z8" style="padding: 0;">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef style="width: 3% !important;"> No. </th>
+          <td mat-cell *matCellDef="let element" style="width: 3% !important;"> {{element.position-1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'rowBackground': row.isSelect == true}"
+          (click)="highlight($event, row)"></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-end mt-2 " style="margin: 0;">
+    <button class="save col-lg-2 me-3 mat-elevation-z6" style="background-color: red;" (click)="removeFilter()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg"
+        viewBox="0 0 16 16">
+        <path
+          d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+      </svg>
+    </button>
+
+    <button class="save col-lg-2  mat-elevation-z6" (click)="save()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg"
+        viewBox="0 0 16 16">
+        <path
+          d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+      </svg>
+    </button>
+  </div>
+
+</div>

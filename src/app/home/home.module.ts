@@ -32,7 +32,9 @@ import { ChartsComponent } from './components/charts/charts.component';
 // import { ChartsModule } from 'ng2-charts';
 import { NgChartsModule } from 'ng2-charts';
 import { ExpandableComponent } from './components/tables/expandable/expandable.component';
-
+import { HyperPopUpComponent } from './components/tables/expandable/hyper-pop-up/hyper-pop-up.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ColumsComponent } from './components/tables/expandable/colums/colums.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { ExpandableComponent } from './components/tables/expandable/expandable.c
     InputTableComponent, 
     GalerryComponent, 
     ChartsComponent, 
-    ExpandableComponent
+    ExpandableComponent, HyperPopUpComponent, ColumsComponent
   ],
   imports: [
     CommonModule,
@@ -73,6 +75,7 @@ import { ExpandableComponent } from './components/tables/expandable/expandable.c
     MatTreeModule,
     MdbCarouselModule,
     NgChartsModule,
+    MatDialogModule,
   ],
 })
 export class HomeModule { }

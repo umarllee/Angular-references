@@ -15,7 +15,7 @@ table {
   }
   
   .example-element-row td {
-    border-bottom-width: 0;
+    border-bottom-width: 0; 
   }
   
   .example-element-detail {
@@ -99,9 +99,6 @@ table {
    width: 100% !important;
 }
 
-.expandableTbale tr td{
-  width: 1% !important;
-}
 
 .expandableTbale::-webkit-scrollbar{
   width: 10px;
@@ -136,4 +133,12 @@ table {
   border-radius: 3px;
 }
 
+a{
+  color: #f0633f;
+  text-decoration: none;
+}
 
+::ng-deep .mat-tooltip {
+  font-size: 12px;
+  background-color: #1A9CC9;
+}
