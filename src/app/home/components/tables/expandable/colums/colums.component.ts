@@ -73,7 +73,8 @@ export class ColumsComponent implements OnInit {
 
   removeFilter(){
     this.dialogRef.close([]);
-  }
+    localStorage.removeItem('colums');
+  } 
 
   save() {
 

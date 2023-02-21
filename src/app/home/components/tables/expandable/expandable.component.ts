@@ -5,6 +5,9 @@ import { HyperPopUpComponent } from './hyper-pop-up/hyper-pop-up.component';
 import { ColumsComponent } from './colums/colums.component';
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
+import * as XLSX from 'xlsx';
+import { MatTableDataSource } from '@angular/material/table';
+// import * as FileSaver from 'file-saver';
 
 interface PeriodicElement {
   name: string;
@@ -14,7 +17,7 @@ interface PeriodicElement {
   description: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: any[] = [
   {
     position: 1,
     name: 'Hydrogen',
@@ -96,24 +99,28 @@ const ELEMENT_DATA: PeriodicElement[] = [
   }
 ]
 
-interface PeriodicElementNormal {
-  redirectName: string;
-  position: number;
-  hyperlink: string;
-  hyperlinkName: string;
-  symbol: string;
-  link: string;
-  redirect: string;
-}
+// interface PeriodicElementNormal {
+//   redirectName: string;
+//   position: number;
+//   hyperlink: string;
+//   hyperlinkName: string;
+//   symbol: string;
+//   link: string;
+//   redirect: string;
+// }
 
-const ELEMENT_DATANormal: PeriodicElementNormal[] = [
+const ELEMENT_DATANormal: any[] = [
   { position: 1, redirectName: 'Modules', hyperlink: '', hyperlinkName: 'Link 1', symbol: 'H', link: 'https://www.blobmaker.app/', redirect: '/home' },
   { position: 2, redirectName: 'Tables', hyperlink: '', hyperlinkName: 'Link 2', symbol: 'He', link: 'https://neumorphism.io/#e0e0e0', redirect: '/home/tables' },
   { position: 3, redirectName: 'Charts', hyperlink: '', hyperlinkName: 'Link 3', symbol: 'Li', link: 'https://blog.hubspot.com/website/css-animation-examples', redirect: '/home/chart' },
   { position: 4, redirectName: 'Beryllium 1', hyperlink: '', hyperlinkName: '', symbol: 'Be', link: 'https://animista.net/play/basic/shadow-drop', redirect: '' },
+  { position: 5, redirectName: 'Beryllium 1', hyperlink: '', hyperlinkName: '', symbol: 'Be', link: 'https://animista.net/play/basic/shadow-drop', redirect: '' },
+  { position: 6, redirectName: 'Beryllium 1', hyperlink: '', hyperlinkName: '', symbol: 'Be', link: 'https://animista.net/play/basic/shadow-drop', redirect: '' },
+  { position: 7, redirectName: 'Beryllium 1', hyperlink: '', hyperlinkName: '', symbol: 'Be', link: 'https://animista.net/play/basic/shadow-drop', redirect: '' },
+  { position: 8, redirectName: 'Beryllium 1', hyperlink: '', hyperlinkName: '', symbol: 'Be', link: 'https://animista.net/play/basic/shadow-drop', redirect: '' },
 ];
 
-const ELEMENT_DATANormal2: PeriodicElementNormal[] = [
+const ELEMENT_DATANormal2: any[] = [
   { position: 1, redirectName: 'Hydrogen 2', hyperlink: '', hyperlinkName: '', symbol: 'H', link: 'https://www.minimamente.com/project/magic/#google_vignette', redirect: '' },
   { position: 2, redirectName: 'Helium 2', hyperlink: '', hyperlinkName: '', symbol: 'He', link: 'http://dwarcher.github.io/reboundgen/examples/', redirect: '' },
   { position: 3, redirectName: 'Lithium 2', hyperlink: '', hyperlinkName: '', symbol: 'Li', link: '', redirect: '' },
@@ -136,8 +143,8 @@ const ELEMENT_DATANormal2: PeriodicElementNormal[] = [
 })
 
 export class ExpandableComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
+  columnsToDisplay = ['name', 'weight', 'symbol', 'position', ];
   columnsToDisplayWithExpand: any[] = [];
   initialColumnsToDisplayWithExpand = ['expand', ...this.columnsToDisplay];
   expandedElement!: PeriodicElement | null;
@@ -145,109 +152,175 @@ export class ExpandableComponent implements OnInit {
     private dialog: MatDialog,
   ) { }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataArray: any[] = [];
+
+  expandedElements: any[] = [];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'symbol2', 'symbol3', 'symbol4', 'symbol5', 'symbol6', 'symbol7', 'symbol8'];
   dataSourceNormal: any;
 
   isFilter = false;
+  isFiles = false;
+  isFilesClick = false;
 
   dialogref?: MatDialogRef<HyperPopUpComponent>;
   dialogrefColums?: MatDialogRef<ColumsComponent>;
-  
-ngOnInit(): void {
-  this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
 
-  const doc = new jsPDF();
+  ngOnInit(): void {
+    if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = ['expand', 'name', 'weight', 'symbol', 'position'];
+    else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+    const doc = new jsPDF();
 
-}
-
-expandRow(element: any) {
-  this.expandedElement = this.expandedElement === element ? null : element
-
-  if (element.position == 1) {
-    this.dataSourceNormal = ELEMENT_DATANormal;
   }
 
-  else if (element.position == 2) {
-    this.dataSourceNormal = ELEMENT_DATANormal2;
+  // expandRow(element: any) {
+  //   this.expandedElement = this.expandedElement === element ? null : element
+
+  //   if (element.position == 1) {
+  //     this.dataSourceNormal = ELEMENT_DATANormal;
+  //   }
+
+  //   else if (element.position == 2) {
+  //     this.dataSourceNormal = ELEMENT_DATANormal2;
+  //   }
+
+  //   else {
+  //     this.dataSourceNormal = '';
+  //   }
+  // }
+
+  openPopup(element: any) {
+    this.dialogref = this.dialog.open(HyperPopUpComponent,
+      {
+        disableClose: true,
+        hasBackdrop: true,
+        width: '50%',
+        height: 'auto',
+        autoFocus: false,
+        data: {
+          id: element
+        }
+
+      });
   }
 
-  else {
-    this.dataSourceNormal = '';
-  }
-
-  // alert();
-}
-
-openPopup(element: PeriodicElementNormal) {
-  this.dialogref = this.dialog.open(HyperPopUpComponent,
-    {
+  openColumns() {
+    this.dialogrefColums = this.dialog.open(ColumsComponent, {
       disableClose: true,
       hasBackdrop: true,
-      width: '50%',
+      width: '30%',
       height: 'auto',
       autoFocus: false,
       data: {
-        id: element
+        columns: this.columnsToDisplayWithExpand
+      }
+    })
+
+    this.dialogrefColums.afterClosed().subscribe((dt: any) => {
+
+      if ((localStorage.getItem('colums')?.split(','))?.length) {
+        this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+        this.dataSource = this.dataSource;
+        this.isFilter = true;
       }
 
+      else {
+        localStorage.setItem('colums', this.initialColumnsToDisplayWithExpand.toString());
+        this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+        this.dataSource = this.dataSource;
+      }
+    })
+  }
+
+  removeFilter() {
+    this.columnsToDisplayWithExpand = this.initialColumnsToDisplayWithExpand;
+    this.isFilter = false;
+  }
+
+  Pdf() {
+
+    let DATA: any = document.getElementById('htmlData');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * fileWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      heightLeft -= pageHeight;
+      const FILEURI = canvas.toDataURL('image/png');
+
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      var width = PDF.internal.pageSize.getWidth();
+      var height = PDF.internal.pageSize.getHeight();
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, imgHeight, '', 'FAST');
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        PDF.addPage();
+        PDF.addImage(canvas, 'PNG', 0, position, fileWidth, imgHeight, '', 'FAST');
+        heightLeft -= pageHeight;
+      }
+      PDF.save('test.pdf');
     });
-}
+  }
 
-openColumns() {
-  this.dialogrefColums = this.dialog.open(ColumsComponent, {
-    disableClose: true,
-    hasBackdrop: true,
-    width: '30%',
-    height: 'auto',
-    autoFocus: false,
-    data: {
-      columns: this.columnsToDisplayWithExpand
+  downloadExcel(filename: string) {
+
+    this.dataArray =  JSON.parse(JSON.stringify(this.dataSource.data))
+    let res = this.initialColumnsToDisplayWithExpand.filter(item => !this.columnsToDisplayWithExpand.includes(item));
+
+    let uniqueArray = res.filter(function (item, pos) {
+      return res.indexOf(item) == pos;
+    })
+
+    uniqueArray.map((dt: any) => {
+      this.dataArray.forEach(function (v) { delete v[dt] });
+    });
+
+    const workSheet = XLSX.utils.json_to_sheet(this.dataArray);
+    const workBook = XLSX.utils.book_new(); // book yaradir
+
+    XLSX.utils.book_append_sheet(workBook, workSheet, 'datas')
+
+    let buffer = XLSX.write(workBook, { bookType: "xlsx", type: 'buffer' });
+    XLSX.write(workBook, { bookType: "xlsx", type: 'binary' }); //binary string
+
+    XLSX.writeFile(workBook, `${filename}.xlsx`); // download
+  }
+
+  displayFiles() {
+    this.isFilesClick = true;
+    this.isFiles = !this.isFiles;
+  }
+
+  toggleRow(row: any, indexRow: any) {
+
+    if (indexRow == 0) {
+      this.dataSource.data[0].dataSourceRow = ELEMENT_DATANormal;
     }
-  })
 
-  this.dialogrefColums.afterClosed().subscribe((dt: any) => {
-    if ((localStorage.getItem('colums')?.split(','))?.length) {
-      this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
-      this.dataSource = this.dataSource;
-      this.isFilter = true;
+    else if (indexRow == 1) {
+      this.dataSource.data[1].dataSourceRow = ELEMENT_DATANormal2;
     }
 
     else {
-      localStorage.setItem('colums', this.initialColumnsToDisplayWithExpand.toString());
+      this.dataSource.data[1].dataSourceRow = []
     }
-  })
-}
 
-removeFilter() {
-  this.columnsToDisplayWithExpand = this.initialColumnsToDisplayWithExpand;
-  this.isFilter = false;
-}
-
-Pdf() {
-
-  let DATA: any = document.getElementById('htmlData');
-  html2canvas(DATA).then((canvas) => {
-    let fileWidth = 208;
-    const pageHeight = 295;
-    const imgHeight = (canvas.height * fileWidth) / canvas.width;
-    let heightLeft = imgHeight;
-    heightLeft -= pageHeight;
-    const FILEURI = canvas.toDataURL('image/png');
-
-    let PDF = new jsPDF('p', 'mm', 'a4');
-    var width = PDF.internal.pageSize.getWidth();
-    var height = PDF.internal.pageSize.getHeight();
-    let position = 0;
-    PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, imgHeight, '', 'FAST');
-    while (heightLeft >= 0) {
-      position = heightLeft - imgHeight;
-      PDF.addPage();
-      PDF.addImage(canvas, 'PNG', 0, position, fileWidth, imgHeight, '', 'FAST');
-      heightLeft -= pageHeight;
+    const index = this.expandedElements.findIndex((x: any) => x.position == row.position);
+    if (index === -1) {
+      this.expandedElements.push(row);
+    } else {
+      this.expandedElements.splice(index, 1);
     }
-    PDF.save('test.pdf');
-  });
-}
+  }
+
+  isExpanded(row: any): string {
+    if (
+      this.expandedElements.findIndex(x => x.position == row.position) !== -1
+    ) {
+      return 'expanded';
+    }
+    return 'collapsed';
+  }
 
 
 
