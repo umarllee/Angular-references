@@ -7,6 +7,7 @@ import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 // import * as FileSaver from 'file-saver';
 
 interface PeriodicElement {
@@ -134,7 +135,10 @@ export class ExpandableComponent implements OnInit {
   expandedElement!: PeriodicElement | null;
   constructor(
     private dialog: MatDialog,
+    private fb: FormBuilder,
   ) { }
+
+  filterForm!: FormGroup;
 
   dataArray: any[] = [];
   totals: number = 0;
@@ -159,7 +163,6 @@ export class ExpandableComponent implements OnInit {
     this.columnsToDisplayWithExpand.sort();
     this.columnsToDisplay.sort();
 
-    // console.log(this.columnsToDisplayWithExpand)
     for (let i = 1; i < this.columnsToDisplayWithExpand?.length; i++) {
       this.totals = 0;
       this.dataSource.data.map(t => {
@@ -168,6 +171,15 @@ export class ExpandableComponent implements OnInit {
 
       this.totalsArray.push(this.totals);
     }
+
+    let model: any = {};
+    this.columnsToDisplayWithExpand.map((dt: any) => {
+      model[dt] = '';
+    })
+
+    this.filterForm = this.fb.group(model)
+
+    console.log(this.filterForm.value)
     
   }
 
@@ -307,9 +319,19 @@ export class ExpandableComponent implements OnInit {
     this.isFiles = !this.isFiles;
   }
 
-  toggleRow(row: any, indexRow: any) {
+  handleFilter() {
+    console.log(this.filterForm.value)
 
-    // console.log(row)
+
+  }
+
+  handleKeyUp(e: any) {
+    if (e.keyCode === 13) {
+      this.handleFilter();
+    }
+  }
+
+  toggleRow(row: any, indexRow: any) {
 
     if (indexRow == 0) {
       this.dataSource.data[0].dataSourceRow = ELEMENT_DATANormal;
@@ -327,7 +349,7 @@ export class ExpandableComponent implements OnInit {
     if (index === -1) {
       row.isClicked = true;
       this.expandedElements.push(row);
-      
+
 
     } else {
       row.isClicked = false;
@@ -340,18 +362,18 @@ export class ExpandableComponent implements OnInit {
     if (
       this.expandedElements.findIndex(x => x.position == row.position) !== -1
     ) {
-      
+
       // row.isClicked = true;
       return 'expanded';
     }
-   
 
-    else{
+
+    else {
       // row.isClicked = false;
       // console.log(row)
       return 'collapsed';
     }
-   
+
   }
 
 
