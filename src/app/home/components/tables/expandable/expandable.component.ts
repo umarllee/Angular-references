@@ -23,79 +23,63 @@ const ELEMENT_DATA: any[] = [
     name: 'Hydrogen',
     weight: 1.0079,
     symbol: 'H',
-    description: `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
-        atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`,
+    isClicked: false
   },
   {
     position: 2,
     name: 'Helium',
     weight: 4.0026,
     symbol: 'He',
-    description: `Helium is a chemical element with symbol He and atomic number 2. It is a
-        colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas
-        group in the periodic table. Its boiling point is the lowest among all the elements.`,
+    isClicked: false,
   },
   {
     position: 3,
     name: 'Lithium',
     weight: 6.941,
     symbol: 'Li',
-    description: `Lithium is a chemical element with symbol Li and atomic number 3. It is a soft,
-        silvery-white alkali metal. Under standard conditions, it is the lightest metal and the
-        lightest solid element.`,
+    isClicked: false,
   },
   {
     position: 4,
     name: 'Beryllium',
     weight: 9.0122,
     symbol: 'Be',
-    description: `Beryllium is a chemical element with symbol Be and atomic number 4. It is a
-        relatively rare element in the universe, usually occurring as a product of the spallation of
-        larger atomic nuclei that have collided with cosmic rays.`,
+    isClicked: false,
   },
   {
     position: 5,
     name: 'Boron',
     weight: 10.811,
     symbol: 'B',
-    description: `Boron is a chemical element with symbol B and atomic number 5. Produced entirely
-        by cosmic ray spallation and supernovae and not by stellar nucleosynthesis, it is a
-        low-abundance element in the Solar system and in the Earth's crust.`,
+    isClicked: false,
   },
   {
     position: 6,
     name: 'Carbon',
     weight: 12.0107,
     symbol: 'C',
-    description: `Carbon is a chemical element with symbol C and atomic number 6. It is nonmetallic
-        and tetravalent—making four electrons available to form covalent chemical bonds. It belongs
-        to group 14 of the periodic table.`,
+    isClicked: false,
   },
   {
     position: 7,
     name: 'Nitrogen',
     weight: 14.0067,
     symbol: 'N',
-    description: `Nitrogen is a chemical element with symbol N and atomic number 7. It was first
-        discovered and isolated by Scottish physician Daniel Rutherford in 1772.`,
+    isClicked: false,
   },
   {
     position: 8,
     name: 'Oxygen',
     weight: 15.9994,
     symbol: 'O',
-    description: `Oxygen is a chemical element with symbol O and atomic number 8. It is a member of
-         the chalcogen group on the periodic table, a highly reactive nonmetal, and an oxidizing
-         agent that readily forms oxides with most elements as well as with other compounds.`,
+    isClicked: false,
   },
   {
     position: 9,
     name: 'Fluorine',
     weight: 18.9984,
     symbol: 'F',
-    description: `Fluorine is a chemical element with symbol F and atomic number 9. It is the
-        lightest halogen and exists as a highly toxic pale yellow diatomic gas at standard
-        conditions.`,
+    isClicked: false,
   }
 ]
 
@@ -144,7 +128,7 @@ const ELEMENT_DATANormal2: any[] = [
 
 export class ExpandableComponent implements OnInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position', ];
+  columnsToDisplay = ['name', 'weight', 'symbol', 'position',];
   columnsToDisplayWithExpand: any[] = [];
   initialColumnsToDisplayWithExpand = ['expand', ...this.columnsToDisplay];
   expandedElement!: PeriodicElement | null;
@@ -153,6 +137,8 @@ export class ExpandableComponent implements OnInit {
   ) { }
 
   dataArray: any[] = [];
+  totals: number = 0;
+  totalsArray: number[] = [];
 
   expandedElements: any[] = [];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'symbol2', 'symbol3', 'symbol4', 'symbol5', 'symbol6', 'symbol7', 'symbol8'];
@@ -166,10 +152,23 @@ export class ExpandableComponent implements OnInit {
   dialogrefColums?: MatDialogRef<ColumsComponent>;
 
   ngOnInit(): void {
+
     if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = ['expand', 'name', 'weight', 'symbol', 'position'];
     else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
     const doc = new jsPDF();
+    this.columnsToDisplayWithExpand.sort();
+    this.columnsToDisplay.sort();
 
+    // console.log(this.columnsToDisplayWithExpand)
+    for (let i = 1; i < this.columnsToDisplayWithExpand?.length; i++) {
+      this.totals = 0;
+      this.dataSource.data.map(t => {
+        this.totals += Number(t[this.columnsToDisplayWithExpand[i]] || 0);
+      });
+
+      this.totalsArray.push(this.totals);
+    }
+    
   }
 
   // expandRow(element: any) {
@@ -219,6 +218,7 @@ export class ExpandableComponent implements OnInit {
 
       if ((localStorage.getItem('colums')?.split(','))?.length) {
         this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+        this.columnsToDisplayWithExpand.sort();
         this.dataSource = this.dataSource;
         this.isFilter = true;
       }
@@ -226,8 +226,24 @@ export class ExpandableComponent implements OnInit {
       else {
         localStorage.setItem('colums', this.initialColumnsToDisplayWithExpand.toString());
         this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+        this.columnsToDisplayWithExpand.sort();
         this.dataSource = this.dataSource;
       }
+
+      this.columnsToDisplayWithExpand.sort();
+      this.columnsToDisplay.sort();
+      this.totalsArray = [];
+
+      for (let i = 1; i < this.columnsToDisplayWithExpand?.length; i++) {
+        this.totals = 0;
+        this.dataSource.data.map(t => {
+          this.totals += Number(t[this.columnsToDisplayWithExpand[i]] || 0);
+        });
+
+        this.totalsArray.push(this.totals);
+
+      }
+
     })
   }
 
@@ -264,7 +280,7 @@ export class ExpandableComponent implements OnInit {
 
   downloadExcel(filename: string) {
 
-    this.dataArray =  JSON.parse(JSON.stringify(this.dataSource.data))
+    this.dataArray = JSON.parse(JSON.stringify(this.dataSource.data))
     let res = this.initialColumnsToDisplayWithExpand.filter(item => !this.columnsToDisplayWithExpand.includes(item));
 
     let uniqueArray = res.filter(function (item, pos) {
@@ -293,6 +309,8 @@ export class ExpandableComponent implements OnInit {
 
   toggleRow(row: any, indexRow: any) {
 
+    // console.log(row)
+
     if (indexRow == 0) {
       this.dataSource.data[0].dataSourceRow = ELEMENT_DATANormal;
     }
@@ -302,13 +320,18 @@ export class ExpandableComponent implements OnInit {
     }
 
     else {
-      this.dataSource.data[1].dataSourceRow = []
+      this.dataSource.data[1].dataSourceRow = [];
     }
 
     const index = this.expandedElements.findIndex((x: any) => x.position == row.position);
     if (index === -1) {
+      row.isClicked = true;
       this.expandedElements.push(row);
+      
+
     } else {
+      row.isClicked = false;
+
       this.expandedElements.splice(index, 1);
     }
   }
@@ -317,9 +340,18 @@ export class ExpandableComponent implements OnInit {
     if (
       this.expandedElements.findIndex(x => x.position == row.position) !== -1
     ) {
+      
+      // row.isClicked = true;
       return 'expanded';
     }
-    return 'collapsed';
+   
+
+    else{
+      // row.isClicked = false;
+      // console.log(row)
+      return 'collapsed';
+    }
+   
   }
 
 

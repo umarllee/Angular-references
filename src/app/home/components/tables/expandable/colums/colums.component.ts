@@ -31,7 +31,7 @@ export class ColumsComponent implements OnInit {
     this.dataSource.map((dt: any) => {
       this.data.columns.map((subDt: any) => {
         if (dt.column == subDt) {
-          
+
           dt.isSelect = true;
           this.highlightRow.push(dt.column)
         }
@@ -42,7 +42,7 @@ export class ColumsComponent implements OnInit {
 
   }
 
-  highlight(event: any, row: any) {
+  highlight (event: any, row: any) {
     // if (event.target.parentElement.style.backgroundColor === '') {
     //   event.target.parentElement.style.backgroundColor = '#b3ebff';
     //   this.highlightRow.push(row.column);
@@ -50,8 +50,9 @@ export class ColumsComponent implements OnInit {
     // else {
     //   event.target.parentElement.style.backgroundColor = '';
 
-
     // }
+
+    console.log(row);
 
     if (row.isSelect == true) {
       event.target.parentElement.style.backgroundColor = '';
@@ -64,17 +65,26 @@ export class ColumsComponent implements OnInit {
     else {
       event.target.parentElement.style.backgroundColor = '#b3ebff';
       this.highlightRow.push(row.column);
+      row.isSelect = true;
     }
   }
 
   onCloseDialog() {
+    var uniqueColumn = this.highlightRow.filter(function (elem, index, self) {
+      return index === self.indexOf(elem);
+    })
+
+    this.dialogRef.close(uniqueColumn);
+    uniqueColumn.sort();
+
+    localStorage.setItem('colums', uniqueColumn.toString());
     this.dialogRef.close([]);
   }
 
-  removeFilter(){
+  removeFilter() {
     this.dialogRef.close([]);
     localStorage.removeItem('colums');
-  } 
+  }
 
   save() {
 
@@ -82,6 +92,7 @@ export class ColumsComponent implements OnInit {
       return index === self.indexOf(elem);
     })
     this.dialogRef.close(uniqueColumn);
+    uniqueColumn.sort();
 
     localStorage.setItem('colums', uniqueColumn.toString());
   }

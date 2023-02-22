@@ -49,7 +49,6 @@
       </svg>
     </button>
 
-
     <!-- <svg (click)="removeFilter()" *ngIf="isFilter" matTooltip="Remove filter" [matTooltipPosition]="'below'"
       xmlns="http://www.w3.org/2000/svg" style="width: 43px; color: red; cursor: pointer;" width="27" height="27"
       fill="currentColor" class="mt-2 bi bi-trash3" viewBox="0 0 16 16">
@@ -60,23 +59,37 @@
 
   <div id="htmlData" class=" mat-elevation-z8 mt-3 row col-lg-11 mx-auto expandableTbale" style="margin: 0;">
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-      </ng-container>
       <ng-container matColumnDef="expand">
         <th mat-header-cell *matHeaderCellDef aria-label="row actions" style="width: 100px !important;">&nbsp;</th>
-        <td mat-cell *matCellDef="let element" style="width: 100px !important;">
-          <button mat-icon-button aria-label="expand row " class="expandIcon" (click)="$event.stopPropagation()">
-            <svg [ngClass]="{'downArrow': expandedElement !== element, 'upArrow': expandedElement === element}"
+        <td mat-cell *matCellDef="let element; let i = dataIndex" style="width: 100px !important;">
+          <button mat-icon-button aria-label="expand row " class="expandIcon"
+            (click)="toggleRow(element, i); $event.stopPropagation()">
+            <svg [ngClass]="{'downArrow': element.isClicked == false, 'upArrow': element.isClicked == true}"
               xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
               class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
               <path
                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
             </svg>
           </button>
+
+          <!-- {{ expandedElements[i]}} -->
+
+          <!-- {{element}} -->
+        </td>
+
+        <td mat-footer-cell *matFooterCellDef="let element; let k =index">
+          TOTALS:
         </td>
       </ng-container>
+
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay; let j = index">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        <td mat-footer-cell *matFooterCellDef>
+          {{totalsArray[columnsToDisplayWithExpand.indexOf(column) -1] || ''}}
+        </td>
+      </ng-container>
+
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
@@ -153,7 +166,6 @@
               </table>
             </div>
 
-
           </div>
         </td>
       </ng-container>
@@ -165,7 +177,7 @@
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 
-      <!-- <tr mat-footer-row *matFooterRowDef="columnsToDisplayWithExpand; sticky: true"></tr> -->
+      <tr mat-footer-row *matFooterRowDef="columnsToDisplayWithExpand; sticky: true"></tr>
       <!-- <mat-footer-row *matFooterRowDef="columnsToDisplayWithExpand; sticky: true"></mat-footer-row> -->
     </table>
   </div>
