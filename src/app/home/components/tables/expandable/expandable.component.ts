@@ -142,7 +142,7 @@ const ELEMENT_DATANormal2: any[] = [
 })
 
 export class ExpandableComponent implements OnInit {
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   initialDataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
   columnsToDisplay = ['name', 'weight', 'symbol', 'position',];
   columnsToDisplayWithExpand: any[] = [];
@@ -174,35 +174,26 @@ export class ExpandableComponent implements OnInit {
   dialogrefColums?: MatDialogRef<ColumsComponent>;
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA)
     this.initialDataSource = new MatTableDataSource<any>(this.dataSource.data);
 
     if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = ['expand', 'name', 'weight', 'symbol', 'position'];
     else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
     const doc = new jsPDF();
     this.calculateTotals();
+    this.generateForm();
 
+    this.filterTable();
+
+  }
+
+  generateForm() {
     let model: any = {};
     this.columnsToDisplayWithExpand.map((dt: any) => {
       model[dt] = '';
     })
 
     this.filterForm = this.fb.group(model)
-
-    console.log(this.filterForm.value)
-
-
-    // dataSource$ = combineLatest([this.filter$, of(this.dataSource)]).pipe(
-    //   map(([filter, dataSource]) =>
-    //     dataSource.filter((item) =>
-    //       filter.every((value) =>
-    //         new RegExp(String(value.value).toLowerCase()).test(
-    //           String(item[value.key]).toLowerCase()
-    //         )
-    //       )
-    //     )
-    //   )
-    // );
-
   }
 
   // expandRow(element: any) {
@@ -264,6 +255,7 @@ export class ExpandableComponent implements OnInit {
         this.dataSource = this.dataSource;
       }
 
+      this.generateForm();
       this.calculateTotals();
 
     })
@@ -330,6 +322,8 @@ export class ExpandableComponent implements OnInit {
   }
 
   handleFilter() {
+    this.orderRequestData.filters = [];
+
     Object.keys(this.filterForm.controls).forEach((key: string) => {
       if (this.filterForm.get(key)?.value.length > 0) {
         this.orderRequestData.filters?.push({
@@ -339,26 +333,37 @@ export class ExpandableComponent implements OnInit {
       }
     });
 
-    let dataArr: any[] = [];
+    localStorage.setItem('filterData', JSON.stringify(this.orderRequestData.filters))
 
-    this.orderRequestData.filters.forEach((element: any) => {
-      dataArr = this.initialDataSource.data.filter((dt: any) => {
-        if (dt[element.key].toLowerCase() == element.value.toLowerCase()) return dt
-      })
-    });
-
-    this.dataSource = new MatTableDataSource<any>(dataArr);
-    this.dataSource.data = this.dataSource.data;
-
-    this.calculateTotals();
-
+    this.filterTable();
 
   }
 
-  handleKeyUp(e: any) {
+  filterTable() {
+    let filters = JSON.parse(localStorage.getItem('filterData')!);
+    let dataArr: any[] = [];
+    filters.length ? filters = filters : filters = null;
 
-    e.preventDefault();
-    e.stopPropagation();
+    if (filters) {
+      filters.forEach((element: any) => {
+        dataArr = this.initialDataSource.data.filter((dt: any) => {
+          if (dt[element.key].toString().toLowerCase() == element.value.toLowerCase()) return dt
+        })
+      });
+
+      this.dataSource = new MatTableDataSource<any>(dataArr);
+      this.dataSource.data = this.dataSource.data;
+
+      this.calculateTotals();
+    }
+
+    else {
+      this.dataSource = new MatTableDataSource<any>(this.initialDataSource.data);
+      this.dataSource.data = this.dataSource.data;
+    }
+  }
+
+  handleKeyUp(e: any) {
     if (e.keyCode === 13) {
       this.handleFilter();
     }
@@ -374,7 +379,7 @@ export class ExpandableComponent implements OnInit {
       this.dataSource.data.map(t => {
         typeof (t[this.columnsToDisplayWithExpand[i]]) == 'string' ? this.totals += 0 : this.totals += Number(t[this.columnsToDisplayWithExpand[i]]);
       });
-      
+
       this.totalsArray.push(this.totals.toFixed(2));
     }
   }
@@ -402,6 +407,18 @@ export class ExpandableComponent implements OnInit {
 
       this.expandedElements.splice(index, 1);
     }
+  }
+
+  sbmt(e: any) {
+    //  console.log( this.dataSource)
+    //  console.log(e.keyCode)
+
+
+    //   if (e.keyCode === 13) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     this.dataSource.data = this.dataSource.data
+    //   }
   }
 
   isExpanded(row: any): string {

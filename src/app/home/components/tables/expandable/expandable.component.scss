@@ -162,6 +162,61 @@ tr.example-element-row:not(.example-expanded-row):active {
   }
 }
 
+.downloadExcel{
+  margin-right: 15px;
+  animation: dwnldExcel 0.6s;
+}
+
+@keyframes dwnldExcel {
+  0% {
+    margin-right: -15px;
+  }
+
+  100% {
+    margin-right: 15px;
+  }
+}
+
+.downloadExcelClose{
+  margin-right: -15px;
+  animation: dwnldExcelClose 0.6s;
+}
+
+@keyframes dwnldExcelClose {
+  0% {
+    margin-right: 15px;
+  }
+
+  100% {
+    margin-right: -35px;
+  }
+}
+
+.pdfDownload{
+  margin-right: 15px;
+  animation: dwnldPdf 0.6s;
+}
+
+// @keyframes dwnldExcelClose {
+//   0% {
+//     margin-right: 15px;
+//   }
+
+//   100% {
+//     margin-right: -15px;
+//   }
+// }
+
+@keyframes dwnldPdf {
+  0% {
+    margin-right: -30px;
+  }
+
+  100% {
+    margin-right: 15px;
+  }
+}
+
 .rowTable {
   overflow: auto !important;
   max-height: 300px !important;
@@ -173,7 +228,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   padding: 0;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  min-width: 170px;
+  min-width: 60px;
 }
 
 .expandableTbale::-webkit-scrollbar {

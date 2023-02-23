@@ -2,8 +2,8 @@
 
   <div class="row col-lg-11 mx-auto justify-content-end align-items-center" style="margin: 0;">
 
-    <div *ngIf="isFilesClick" [ngClass]="{'isDisplayFiles': isFiles == true, 'isNotDisplayFiles': isFiles == false}">
-      <button [attr.disabled]="!isFiles? true : null" class="col-lg-1 addBtn me-3 " style="background: #8d8ae6; "
+    <div style="padding: 0;" *ngIf="isFilesClick" [ngClass]="{'isDisplayFiles': isFiles == true, 'isNotDisplayFiles': isFiles == false}">
+      <button [attr.disabled]="!isFiles? true : null" class="col-lg-1 addBtn " [ngClass]="{'downloadExcel': isFiles == true, 'downloadExcelClose': isFiles == false}" style="background: #8d8ae6; "
         (click)="downloadExcel('test')" matTooltip="Excel" [matTooltipPosition]="'below'" matRipple
         [matRippleRadius]="8" [matRippleColor]="'white'">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
@@ -13,7 +13,7 @@
         </svg>
       </button>
 
-      <button [attr.disabled]="!isFiles? true : null" class="col-lg-1 addBtn me-2" style="background: #bcc915; "
+      <button [attr.disabled]="!isFiles? true : null" class="col-lg-1 addBtn " [ngClass]="{'pdfDownload': isFiles == true, 'downloadExcelClose': isFiles == false}" style="background: #bcc915; "
         (click)="Pdf()" matTooltip="PDF" [matTooltipPosition]="'below'" matRipple [matRippleRadius]="8"
         [matRippleColor]="'white'">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
@@ -59,7 +59,7 @@
 
   <div id="htmlData" class=" mat-elevation-z8 mt-3 row col-lg-11 mx-auto expandableTbale" style="margin: 0;">
 
-    <form [formGroup]="filterForm" class="mat-elevation-z8" style="padding: 0 !important;">
+    <form (keydown.enter)="$event.preventDefault()" [formGroup]="filterForm" class="mat-elevation-z8" style="padding: 0 !important;">
       <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
         <ng-container matColumnDef="expand">
           <th mat-header-cell *matHeaderCellDef aria-label="row actions" style="width: 100px !important;">&nbsp;</th>
