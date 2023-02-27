@@ -147,10 +147,10 @@ export class ExpandableComponent implements OnInit {
   initialDataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
   columnsToDisplay = ['name', 'weight', 'symbol', 'position',];
   columnsToDisplayWithExpand: any[] = [];
-  menuColumnsList: string[] = []; // menuda gostermek ucun
-  modelColumns: any[] = ['expand']  // localstorage yazib istifade etmek ucun
+  menuColumnsList: any[] = []; // menuda gostermek ucun
+  modelColumns: any[] = []  // localstorage yazib istifade etmek ucun
 
-  initialColumnsToDisplayWithExpand = ['expand', ...this.columnsToDisplay];
+  initialColumnsToDisplayWithExpand: any[] = [];
   expandedElement!: PeriodicElement | null;
   constructor(
     private dialog: MatDialog,
@@ -189,14 +189,22 @@ export class ExpandableComponent implements OnInit {
     // this.dataSource.paginator = this.commonPaginator;
     this.initialDataSource = new MatTableDataSource<any>(this.dataSource.data);
 
+    let dtArr = ['expand', ...this.columnsToDisplay]
+
+    dtArr.map((dt: any) => {
+      this.initialColumnsToDisplayWithExpand.push({
+        name: dt,
+        isSelect: true
+      })
+    })
+
     if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = ['expand', 'name', 'weight', 'symbol', 'position'];
     else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
 
 
-    this.menuColumnsList = JSON.parse(JSON.stringify(this.columnsToDisplayWithExpand))
-    this.menuColumnsList.splice(this.menuColumnsList.indexOf('expand'), 1)
-
-
+    this.menuColumnsList = JSON.parse(JSON.stringify(this.initialColumnsToDisplayWithExpand))
+    // this.menuColumnsList.splice(this.menuColumnsList.indexOf('expand'), 1)
+    
     const doc = new jsPDF();
     this.calculateTotals();
     this.generateForm();
@@ -357,6 +365,9 @@ export class ExpandableComponent implements OnInit {
       }
     });
 
+    console.log(this.orderRequestData.filters)
+
+    
     localStorage.setItem('filterData', JSON.stringify(this.orderRequestData.filters))
 
     this.filterTable();
@@ -476,45 +487,38 @@ export class ExpandableComponent implements OnInit {
     $event.stopPropagation();
     $event.preventDefault();
 
-    console.log($event.target.tagName)
 
     // in this case, the check box is controlled by adding the .selected class
     if ($event.target && $event.target.tagName == 'BUTTON') {
       $event.target.classList.toggle('selected');
 
-      if (!this.modelColumns.includes(name)) this.modelColumns.push(name);
-      else this.modelColumns.splice(this.modelColumns.indexOf(name), 1)
+      if (!this.modelColumns.some((dt: any) => dt.name == name)) {
+        this.modelColumns.push({
+          name: name,
+          isSelect: true
+        });
+      }
+      else {
+        this.modelColumns.splice(this.modelColumns.findIndex((dt: any) => dt.name == name), 1)
+      }
 
-      // this.menuColumnsList.splice(this.menuColumnsList.indexOf(name), 1)
+
+      let modulModel: any [] = [];
+      this.modelColumns.map((dt: any) => modulModel.push(dt.name))
+
 
       console.log(this.modelColumns)
+      console.log(this.menuColumnsList)
 
-      localStorage.setItem('colums', this.modelColumns.toString());
+      localStorage.setItem('colums', modulModel.toString());
 
-      if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = ['expand', 'name', 'weight', 'symbol', 'position'];
+      // console.log(localStorage.getItem('colums'))
+      if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = this.initialColumnsToDisplayWithExpand;
       else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
 
     }
 
     this.columnsToDisplayWithExpand.sort();
-
-
-    // if ((localStorage.getItem('colums')?.split(','))?.length) {
-    //   this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
-    //   this.columnsToDisplayWithExpand.sort();
-    //   this.dataSource = this.dataSource;
-    //   this.dataSource.paginator = this.commonPaginator;
-    //   this.isFilter = true;
-    // }
-
-    // else {
-    //   localStorage.setItem('colums', this.initialColumnsToDisplayWithExpand.toString());
-    //   this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
-    //   this.columnsToDisplayWithExpand.sort();
-    //   this.dataSource = this.dataSource;
-    //   this.dataSource.paginator = this.commonPaginator;
-    // }
-
     this.generateForm();
     this.calculateTotals();
 
