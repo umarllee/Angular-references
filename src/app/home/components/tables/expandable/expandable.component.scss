@@ -187,7 +187,7 @@ tr.example-element-row:not(.example-expanded-row):active {
     margin-right: 15px;
   }
 
-  100% {
+  100% { 
     margin-right: -35px;
   }
 }
@@ -278,4 +278,12 @@ a {
   font-weight: bolder;
   font-size: 13px;
   color: #f0633f;
+}
+
+// ::ng-deep .btnContainer .cdk-overlay-connected-position-bounding-box {
+//   margin-left: -50px !important;
+// }
+
+.selected{
+  background-color: #d5f1d5e3;
 }

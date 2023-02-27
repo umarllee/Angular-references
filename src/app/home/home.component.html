@@ -1,76 +1,152 @@
+<div class="row" style="margin: 0;">
 
-<app-navigation></app-navigation>
+  <mat-drawer-container class="" [hasBackdrop]="true" style="padding: 0;">
+    <mat-drawer #drawer [mode]="'over'">
+       <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="ps-3">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="router-link-active"
+            [routerLink]="[node.url]" routerLinkActive="activeLink" (click)="openSideModule(node.moduleName)">
+            {{node.moduleName}}
+          </mat-tree-node>
+          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.title">
 
-<div class="mx-auto d-flex flex-column">
-  <!-- <ul class="col-12 mt-5 d-flex "> 
-    <li  class="col-3 mx-2" *ngFor="let element of moduleDatas; let i = index;">
-      <div class="card col-12 mx-3 my-3 mat-elevation-z8" [@cardFlip]="state" >
-        <div class="face back col-12">
-          <div class="text-end m-2 col-11" >
-            <svg (click)="cardClicked(i)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-              class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            {{node.moduleName}}
+
+            <svg *ngIf="!treeControl.isExpanded(node)"
+              style="color: #146F90; margin-left: 2% !important; margin-top: 1%;" xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
               <path
-                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
             </svg>
+
+            <svg *ngIf="treeControl.isExpanded(node)"
+              style="color: #146F90; margin-left: 2% !important; margin-top: 1%;" xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+              <path
+                d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+            </svg>
+          </mat-tree-node>
+
+
+        </mat-tree> -->
+        bla bla
+
+        <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node (click)="open(node.title, node.url)" *matTreeNodeDef="let node" matTreeNodePadding
+            routerLinkActive="router-link-active" [routerLink]="[node.url]"> 
+            <img title="{{node.title}}" [src]="node.imagePath" />{{node.title}}
+          </mat-tree-node>
+          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.title">
+            <img title="{{node.title}}" [src]="node.imagePath" class="me-2" />
+
+            {{node.title}}
+
+            <svg *ngIf="!treeControl.isExpanded(node)"
+              style="color: #146F90; margin-left: 2% !important; margin-top: 1%;" xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+            </svg>
+
+            <svg *ngIf="treeControl.isExpanded(node)"
+              style="color: #146F90; margin-left: 2% !important; margin-top: 1%;" xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+              <path
+                d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+            </svg>
+
+          </mat-tree-node>
+        </mat-tree> -->
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="row" style="margin: 0; position: fixed; z-index: 999999; width: 100%; background: #fff">
+
+        <!-- <app-navigation style="padding: 0; margin: 0;"></app-navigation> -->
+        <nav class="mat-elevation-z8 d-flex justify-content-between ps-4 align-items-center py-1 nav ">
+          <div class="">
+            <!-- <svg style="cursor: pointer;" (click)="goHome()" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+              fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+              <path fill-rule="evenodd"
+                d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+            </svg> -->
+
+            <!-- <svg style="color: #acdda9" (click)="openSidebar()" xmlns="http://www.w3.org/2000/svg" width="28"
+              height="28" fill="currentColor" class="bi bi-layout-text-sidebar" viewBox="0 0 16 16">
+              <path
+                d="M3.5 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM3 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
+              <path
+                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm12-1v14h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 0H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h9V1z" />
+            </svg> -->
+
+            <svg style="color: #acdda9; cursor: pointer;" (click)="openSidebar()" xmlns="http://www.w3.org/2000/svg"
+              width="25" height="25" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+              <path
+                d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z" />
+              <path
+                d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z" />
+            </svg>
+
           </div>
 
-          <div class="ms-3 d-flex align-items-center" (click)="openModule(element)" style="cursor: pointer; height: 130px">
-            <h2>
-              {{element.name}}   
-            </h2>
-          </div> 
-        </div> 
-        <div class="face front  col-12" >
-          <div class="m-2  text-end">
-            <svg (click)="cardClicked(i)"  style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-              class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-              <path
-                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+          <h4 class="d-flex mt-2 me-5">
+            <span class="me-2">Gulchohra Umarli</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill"
+              viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
             </svg>
-          </div>
-          <div class="mt-5 ms-3" (click)="openModule(element)" style="cursor: pointer; height: 130px">
-            {{element.desc}}
-          </div>
-        </div>
+          </h4>
+        </nav>
       </div>
-    </li> 
-  </ul> -->
 
+      <div class="mx-auto d-flex flex-column mt-4">
+        <ul class="col-12 mt-5 d-flex ">
+          <li class="col-3 mx-2 " *ngFor="let element of moduleDatas; let i = index;">
+            <div class="card col-12 mx-3 my-3 mat-elevation-z8"  [@cardFlip]="moduleDatas[i].stateName">
+              <div class="face back col-12">
+                <div class="text-end m-2 col-11">
+                  <svg (click)="cardClicked(i)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="20"
+                    height="20" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                  </svg>
+                </div>
 
-  <ul class="col-12 mt-5 d-flex ">
-    <li class="col-3 mx-2" *ngFor="let element of moduleDatas; let i = index;">
-      <div class="card col-12 mx-3 my-3 mat-elevation-z8" [@cardFlip]="moduleDatas[i].stateName">
-        <div class="face back col-12">
-          <div class="text-end m-2 col-11">
-            <svg (click)="cardClicked(i)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="20"
-              height="20" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-              <path
-                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-            </svg>
-          </div>
+                <div class="ms-3 d-flex align-items-center"  [routerLink]="[element.url]" (click)="openModule(element)" 
+                  style="cursor: pointer; height: 130px">
+                  <h2>
+                    {{element.name}} -- {{element.url}}
+                  </h2>
+                </div>
+              </div>
+              <div class="face front  col-12">
+                <div class="text-end m-2 col-11">
+                  <svg (click)="cardClicked(i)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="20"
+                    height="20" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                  </svg>
+                </div>
+                <div class="mt-5 ms-3" (click)="openModule(element)" style="cursor: pointer; height: 130px">
+                  {{element.desc}}
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
 
-          <div class="ms-3 d-flex align-items-center" (click)="openModule(element)" 
-            style="cursor: pointer; height: 130px">
-            <h2> 
-              {{element.name}}
-            </h2>
-          </div> 
-        </div>
-        <div class="face front  col-12">
-          <div class="text-end m-2 col-11">
-            <svg (click)="cardClicked(i)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="20"
-              height="20" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-              <path
-                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-            </svg> 
-          </div>
-          <div class="mt-5 ms-3" (click)="openModule(element)" style="cursor: pointer; height: 130px">
-            {{element.desc}}
-          </div>
-        </div>
+        <router-outlet></router-outlet>
+
       </div>
-    </li>
-  </ul>
+
+
+
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+
 
 </div>
-  

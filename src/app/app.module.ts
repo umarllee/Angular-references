@@ -11,6 +11,7 @@ import { UserFormComponent } from './dataShare/user-form/user-form.component';
 import { ShowUserComponent } from './home/components/show-user/show-user.component';
 import { DataShareComponent } from './dataShare/data-share.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 // import { ChartsModule } from 'ng2-charts';
 
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     MatPaginatorModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSidenavModule
   
   ], 
   providers: [],

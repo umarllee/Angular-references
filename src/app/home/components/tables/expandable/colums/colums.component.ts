@@ -31,7 +31,7 @@ export class ColumsComponent implements OnInit {
     this.dataSource.map((dt: any) => {
       this.data.columns.map((subDt: any) => {
         if (dt.column == subDt) {
-
+ 
           dt.isSelect = true;
           this.highlightRow.push(dt.column)
         }

@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HyperPopUpComponent } from './hyper-pop-up/hyper-pop-up.component';
 import { ColumsComponent } from './colums/colums.component';
@@ -8,6 +8,7 @@ import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 // import * as FileSaver from 'file-saver';
 
 interface PeriodicElement {
@@ -146,6 +147,9 @@ export class ExpandableComponent implements OnInit {
   initialDataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
   columnsToDisplay = ['name', 'weight', 'symbol', 'position',];
   columnsToDisplayWithExpand: any[] = [];
+  menuColumnsList: string[] = []; // menuda gostermek ucun
+  modelColumns: any[] = ['expand']  // localstorage yazib istifade etmek ucun
+
   initialColumnsToDisplayWithExpand = ['expand', ...this.columnsToDisplay];
   expandedElement!: PeriodicElement | null;
   constructor(
@@ -173,12 +177,26 @@ export class ExpandableComponent implements OnInit {
   dialogref?: MatDialogRef<HyperPopUpComponent>;
   dialogrefColums?: MatDialogRef<ColumsComponent>;
 
+  pageEvent!: PageEvent;
+  length?: number;
+  lengthVender?: number;
+  pageSize!: number;
+  pageSizeOptions: number[] = [5, 10, 15, 20];
+  @ViewChild('commonPag') commonPaginator!: MatPaginator;
+
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA)
+    // this.dataSource.paginator = this.commonPaginator;
     this.initialDataSource = new MatTableDataSource<any>(this.dataSource.data);
 
     if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = ['expand', 'name', 'weight', 'symbol', 'position'];
     else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+
+
+    this.menuColumnsList = JSON.parse(JSON.stringify(this.columnsToDisplayWithExpand))
+    this.menuColumnsList.splice(this.menuColumnsList.indexOf('expand'), 1)
+
+
     const doc = new jsPDF();
     this.calculateTotals();
     this.generateForm();
@@ -211,6 +229,10 @@ export class ExpandableComponent implements OnInit {
   //     this.dataSourceNormal = '';
   //   }
   // }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.commonPaginator;
+  }
 
   openPopup(element: any) {
     this.dialogref = this.dialog.open(HyperPopUpComponent,
@@ -245,6 +267,7 @@ export class ExpandableComponent implements OnInit {
         this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
         this.columnsToDisplayWithExpand.sort();
         this.dataSource = this.dataSource;
+        this.dataSource.paginator = this.commonPaginator;
         this.isFilter = true;
       }
 
@@ -253,6 +276,7 @@ export class ExpandableComponent implements OnInit {
         this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
         this.columnsToDisplayWithExpand.sort();
         this.dataSource = this.dataSource;
+        this.dataSource.paginator = this.commonPaginator;
       }
 
       this.generateForm();
@@ -353,6 +377,7 @@ export class ExpandableComponent implements OnInit {
 
       this.dataSource = new MatTableDataSource<any>(dataArr);
       this.dataSource.data = this.dataSource.data;
+      this.dataSource.paginator = this.commonPaginator;
 
       this.calculateTotals();
     }
@@ -360,6 +385,7 @@ export class ExpandableComponent implements OnInit {
     else {
       this.dataSource = new MatTableDataSource<any>(this.initialDataSource.data);
       this.dataSource.data = this.dataSource.data;
+      this.dataSource.paginator = this.commonPaginator;
     }
   }
 
@@ -439,6 +465,62 @@ export class ExpandableComponent implements OnInit {
 
   }
 
+
+
+
+
+  //  EGER MAT MENUDAN SECECEKSE COLUMNLARI
+
+  chooseColumn($event: any, name: string) {
+    // this stops the menu from closing
+    $event.stopPropagation();
+    $event.preventDefault();
+
+    console.log($event.target.tagName)
+
+    // in this case, the check box is controlled by adding the .selected class
+    if ($event.target && $event.target.tagName == 'BUTTON') {
+      $event.target.classList.toggle('selected');
+
+      if (!this.modelColumns.includes(name)) this.modelColumns.push(name);
+      else this.modelColumns.splice(this.modelColumns.indexOf(name), 1)
+
+      // this.menuColumnsList.splice(this.menuColumnsList.indexOf(name), 1)
+
+      console.log(this.modelColumns)
+
+      localStorage.setItem('colums', this.modelColumns.toString());
+
+      if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = ['expand', 'name', 'weight', 'symbol', 'position'];
+      else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+
+    }
+
+    this.columnsToDisplayWithExpand.sort();
+
+
+    // if ((localStorage.getItem('colums')?.split(','))?.length) {
+    //   this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+    //   this.columnsToDisplayWithExpand.sort();
+    //   this.dataSource = this.dataSource;
+    //   this.dataSource.paginator = this.commonPaginator;
+    //   this.isFilter = true;
+    // }
+
+    // else {
+    //   localStorage.setItem('colums', this.initialColumnsToDisplayWithExpand.toString());
+    //   this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+    //   this.columnsToDisplayWithExpand.sort();
+    //   this.dataSource = this.dataSource;
+    //   this.dataSource.paginator = this.commonPaginator;
+    // }
+
+    this.generateForm();
+    this.calculateTotals();
+
+    // add additional selection logic here.
+
+  }
 
 
 }

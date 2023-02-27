@@ -9,21 +9,21 @@ import { SkillsComponent } from './home/components/tables/skills.component';
 import { WorksComponent } from './home/components/works/works.component';
 import { HomeComponent } from './home/home.component';
 import { ExpandableComponent } from './home/components/tables/expandable/expandable.component';
- 
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home/tables', component: SkillsComponent },
-  { path: 'home/tables/inputTable', component: InputTableComponent },
-  { path: 'home/tables/expandableTable', component: ExpandableComponent },
-  { path: 'home/works', component: WorksComponent },
-  { path: 'home/cards', component: CardsComponent },
-  { path: 'home/gallery', component: GalerryComponent },
-  { path: 'home/chart', component: ChartsComponent },
-  { path: 'home/dataShare', component: DataShareComponent },
   {
     runGuardsAndResolvers: 'always',
-    path: 'home', 
-    component: HomeComponent
+    path: 'home', component: HomeComponent, children: [
+      { path: 'tables', component: SkillsComponent },
+      { path: 'tables/inputTable', component: InputTableComponent },
+      { path: 'tables/expandableTable', component: ExpandableComponent },
+      { path: 'works', component: WorksComponent },
+      { path: 'cards', component: CardsComponent },
+      { path: 'gallery', component: GalerryComponent },
+      { path: 'chart', component: ChartsComponent },
+      { path: 'dataShare', component: DataShareComponent },
+    ]
   }
 ];
 

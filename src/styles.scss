@@ -261,14 +261,14 @@ body::-webkit-scrollbar-thumb {
   select {
     width: 100%;
     line-height: 39px;
-    height: 48px;
+    height: 35px;
     padding: 0 15px;
     box-sizing: border-box;
     background-color: #F4F9FB;
     font-size: 16px;
     color: #222;
     border: 1px solid #154d531d;
-    border-radius: 15px;
+    border-radius: 10px;
 
     &:focus {
       outline: 0;

@@ -35,6 +35,7 @@ import { ExpandableComponent } from './components/tables/expandable/expandable.c
 import { HyperPopUpComponent } from './components/tables/expandable/hyper-pop-up/hyper-pop-up.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ColumsComponent } from './components/tables/expandable/colums/colums.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { ColumsComponent } from './components/tables/expandable/colums/colums.co
     MdbCarouselModule,
     NgChartsModule,
     MatDialogModule,
+    MatSidenavModule
   ],
 })
 export class HomeModule { }
