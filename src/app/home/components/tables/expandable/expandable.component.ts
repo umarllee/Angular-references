@@ -148,7 +148,8 @@ export class ExpandableComponent implements OnInit {
   columnsToDisplay = ['name', 'weight', 'symbol', 'position',];
   columnsToDisplayWithExpand: any[] = [];
   menuColumnsList: any[] = []; // menuda gostermek ucun
-  modelColumns: any[] = []  // localstorage yazib istifade etmek ucun
+  modelColumns: any[] = [];
+  modulModel: any[] = [];// localstorage yazib istifade etmek ucun
 
   initialColumnsToDisplayWithExpand: any[] = [];
   expandedElement!: PeriodicElement | null;
@@ -185,6 +186,7 @@ export class ExpandableComponent implements OnInit {
   @ViewChild('commonPag') commonPaginator!: MatPaginator;
 
   ngOnInit(): void {
+
     this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA)
     // this.dataSource.paginator = this.commonPaginator;
     this.initialDataSource = new MatTableDataSource<any>(this.dataSource.data);
@@ -198,18 +200,31 @@ export class ExpandableComponent implements OnInit {
       })
     })
 
-    if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = ['expand', 'name', 'weight', 'symbol', 'position'];
-    else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
+    if (!(localStorage.getItem('colums')?.split(','))?.length) {
+      this.columnsToDisplayWithExpand = dtArr;
+      this.menuColumnsList = this.initialColumnsToDisplayWithExpand;
+    }
+    else {
+      this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
 
+      this.menuColumnsList = this.initialColumnsToDisplayWithExpand
+      this.menuColumnsList.map((dt: any) => {
+        let isSlct = false;
+        this.columnsToDisplayWithExpand.map((clm: any) => {
+          if (dt.name == clm) isSlct = true;
+        })
+        dt.isSelect = isSlct
+      })
+    }
 
-    this.menuColumnsList = JSON.parse(JSON.stringify(this.initialColumnsToDisplayWithExpand))
+    // this.menuColumnsList = JSON.parse(JSON.stringify(this.initialColumnsToDisplayWithExpand))
     // this.menuColumnsList.splice(this.menuColumnsList.indexOf('expand'), 1)
-    
+
     const doc = new jsPDF();
     this.calculateTotals();
     this.generateForm();
 
-    this.filterTable();
+    // this.filterTable();
 
   }
 
@@ -367,7 +382,7 @@ export class ExpandableComponent implements OnInit {
 
     console.log(this.orderRequestData.filters)
 
-    
+
     localStorage.setItem('filterData', JSON.stringify(this.orderRequestData.filters))
 
     this.filterTable();
@@ -382,7 +397,7 @@ export class ExpandableComponent implements OnInit {
     if (filters) {
       filters.forEach((element: any) => {
         dataArr = this.initialDataSource.data.filter((dt: any) => {
-          if (dt[element.key].toString().toLowerCase() == element.value.toLowerCase()) return dt
+          if (dt[element.key].toString().toLowerCase().includes(element.value.toLowerCase())) return dt
         })
       });
 
@@ -482,43 +497,35 @@ export class ExpandableComponent implements OnInit {
 
   //  EGER MAT MENUDAN SECECEKSE COLUMNLARI
 
-  chooseColumn($event: any, name: string) {
+  chooseColumn($event: any, name: string, status: boolean, index: any) {
     // this stops the menu from closing
     $event.stopPropagation();
     $event.preventDefault();
 
-
-    // in this case, the check box is controlled by adding the .selected class
     if ($event.target && $event.target.tagName == 'BUTTON') {
-      $event.target.classList.toggle('selected');
+      // $event.target.classList.toggle('selected');
 
-      if (!this.modelColumns.some((dt: any) => dt.name == name)) {
-        this.modelColumns.push({
-          name: name,
-          isSelect: true
-        });
-      }
-      else {
-        this.modelColumns.splice(this.modelColumns.findIndex((dt: any) => dt.name == name), 1)
-      }
+      status == true ? this.menuColumnsList[index].isSelect = false : this.menuColumnsList[index].isSelect = true;
 
+      this.menuColumnsList.map((dt: any) => {
+        dt.isSelect ? this.modelColumns.push(dt.name) : (this.modelColumns.length ? this.modelColumns.splice(this.modelColumns.findIndex((dt: any) => dt == name), 1) : '')
+      })
 
-      let modulModel: any [] = [];
-      this.modelColumns.map((dt: any) => modulModel.push(dt.name))
+      
+      let arr: any[] = [];
 
+      this.menuColumnsList.map((dt: any) => {
+        if (dt.isSelect == true) arr.push(dt.name)
+      })
 
-      console.log(this.modelColumns)
-      console.log(this.menuColumnsList)
+      localStorage.setItem('colums', arr.toString());
 
-      localStorage.setItem('colums', modulModel.toString());
-
-      // console.log(localStorage.getItem('colums'))
       if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = this.initialColumnsToDisplayWithExpand;
       else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
 
     }
 
-    this.columnsToDisplayWithExpand.sort();
+    // this.columnsToDisplayWithExpand.sort();
     this.generateForm();
     this.calculateTotals();
 
