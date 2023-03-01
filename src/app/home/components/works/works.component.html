@@ -1,9 +1,13 @@
-<app-navigation></app-navigation>
-<app-navbarPanel></app-navbarPanel>
+<!-- <app-navigation></app-navigation>
+<app-navbarPanel></app-navbarPanel> -->
 
 <div class="px-4">
   <div class="mt-5">
-    <h1> DROP DOWN WITH TABLE </h1>
+    <h3 class="mt-3" style="border-bottom: 1px solid #7d1111;
+    padding: 10px 0;
+    text-align: center">
+      DROP DOWN WITH TABLE
+    </h3>
     <div class="mt-3">
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" aria-expanded="false"
         (click)="openFilter()">
@@ -45,7 +49,9 @@
   </div>
 
   <div class="mt-3">
-    <h1> CHIPS FEATURE</h1>
+    <h3 class="mt-3" style="border-bottom: 1px solid #7d1111;
+    padding: 10px 0;
+    text-align: center"> CHIPS FEATURE</h3>
 
     <mat-form-field class="example-chip-list col-6" appearance="fill">
       <mat-label>Favorite Fruits</mat-label>
@@ -74,7 +80,11 @@
 
   <div class="mt-3">
 
-    <h1>Sidebar menu items</h1>
+    <h3 class="mt-3" style="border-bottom: 1px solid #7d1111;
+    padding: 10px 0;
+    text-align: center">
+      Sidebar menu items
+    </h3>
 
     <div class="mx-4">
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mb-5">
@@ -109,4 +119,3 @@
     </div>
   </div>
 </div>
-

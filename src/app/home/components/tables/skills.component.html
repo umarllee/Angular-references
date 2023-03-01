@@ -1,9 +1,13 @@
-
 <app-navbarPanel class="mt-3"></app-navbarPanel>
 
 <div class="px-4 py-2">
   <div class="mt-3 ">
-    <h1> MATERIAL TABLE WITH SEARCHING, STICKY PAGINATION, EXCEL FEATURES </h1>
+    <h3 style="border-bottom: 1px solid #7d1111;
+    padding: 10px 0;
+    text-align: center">
+      MATERIAL TABLE WITH SEARCHING, STICKY PAGINATION, EXCEL FEATURES
+    </h3>
+
     <div class="col-2 mt-5 ms-3" style="display: flex;">
       <mat-form-field>
         <mat-label style="color: rgb(61, 138, 189) ;">Search</mat-label>
@@ -15,7 +19,8 @@
       <table mat-table [dataSource]="routeData">
         <ng-container *ngFor="let column of displayedcommontColumns; let i = index" [matColumnDef]="column">
           <th mat-header-cell *matHeaderCellDef>{{column}}</th>
-          <td mat-cell *matCellDef="let element; let rowIndex = index" (mousedown)="getRowFirst($event)"  class="hower-td">
+          <td mat-cell *matCellDef="let element; let rowIndex = index" (mousedown)="getRowFirst($event)"
+            class="hower-td">
             {{element[column]}}</td>
         </ng-container>
 
@@ -31,11 +36,15 @@
       <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons #excelPag
         aria-label="Select page of periodic elements">
       </mat-paginator>
-    </div> 
+    </div>
   </div>
 
   <div class="mt-5 mb-5">
-    <h1> MATERIAL TABLE WITH FOOTER TOTAL </h1>
+    <h3 style="border-bottom: 1px solid #7d1111;
+    padding: 10px 0;
+    text-align: center">
+      MATERIAL TABLE WITH FOOTER TOTAL
+    </h3>
     <div class="mat-elevation-z8 line-container">
       <table mat-table [dataSource]="routeCurrentData" class="currentRouteData">
         <ng-container *ngFor="let column of currentRouteColumns; let i = index" [matColumnDef]="column.Name">
@@ -56,7 +65,7 @@
             style="font-weight: bold; color: rgb(50, 85, 117);text-transform: uppercase;">
             <div *ngIf="i==0">
               Totals
-            </div> 
+            </div>
             <div *ngIf="i==1">
               {{sumForwardTotals}} / {{sumBackwardTotals}}
             </div>
@@ -88,7 +97,9 @@
 
 
   <div class="mt-5 mb-5">
-    <h1> MATERIAL TABLE WITH IMPORTING EXCEL </h1>
+    <h3 style="border-bottom: 1px solid #7d1111;
+    padding: 10px 0;
+    text-align: center"> MATERIAL TABLE WITH IMPORTING EXCEL </h3>
 
     <div class="d-flex">
       <div class="border-end col-5 mt-4 mb-4 ms-3 pb-2 mat-elevation-z8">
@@ -230,10 +241,17 @@
   </div>
 
 
-  <div class="mt-5 mb-5">
-    <h1 [routerLink]="['inputTable']" style="cursor: pointer"> MATERIAL TABLE WITH INPUT COLUMNS(CHANGEABLE) </h1>
-    <h1 [routerLink]="['expandableTable']" class="mt-2" style="cursor: pointer"> EXPANDABLE TABLE </h1>
+  <!-- <div class="mt-5 mb-5">
+    <h3 style="border-bottom: 1px solid #7d1111;
+    padding: 10px 0;
+    text-align: center; cursor: pointer" [routerLink]="['inputTable']">
+      MATERIAL TABLE WITH INPUT COLUMNS(CHANGEABLE)
+    </h3>
+    <h3 style="border-bottom: 1px solid #7d1111;
+    padding: 10px 0;
+    text-align: center;cursor: pointer" [routerLink]="['expandableTable']" class="mt-2"> EXPANDABLE TABLE
+    </h3>
 
-  </div>
-  
+  </div> -->
+
 </div>

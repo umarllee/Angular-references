@@ -213,7 +213,10 @@ export class ExpandableComponent implements OnInit {
         this.columnsToDisplayWithExpand.map((clm: any) => {
           if (dt.name == clm) isSlct = true;
         })
+
         dt.isSelect = isSlct
+
+        this.modelColumns = this.columnsToDisplayWithExpand;
       })
     }
 
@@ -490,11 +493,6 @@ export class ExpandableComponent implements OnInit {
     }
 
   }
-
-
-
-
-
   //  EGER MAT MENUDAN SECECEKSE COLUMNLARI
 
   chooseColumn($event: any, name: string, status: boolean, index: any) {
@@ -507,18 +505,25 @@ export class ExpandableComponent implements OnInit {
 
       status == true ? this.menuColumnsList[index].isSelect = false : this.menuColumnsList[index].isSelect = true;
 
-      this.menuColumnsList.map((dt: any) => {
-        dt.isSelect ? this.modelColumns.push(dt.name) : (this.modelColumns.length ? this.modelColumns.splice(this.modelColumns.findIndex((dt: any) => dt == name), 1) : '')
-      })
-
-      
       let arr: any[] = [];
 
       this.menuColumnsList.map((dt: any) => {
         if (dt.isSelect == true) arr.push(dt.name)
       })
 
-      localStorage.setItem('colums', arr.toString());
+      console.log(arr)
+
+      if(arr.length){
+         localStorage.setItem('colums', arr.toString());
+      }
+
+      else{
+        let arrDefault = ['expand']
+        this.menuColumnsList[this.menuColumnsList.findIndex((x:any) => x.name == 'expand')].isSelect = true;
+        localStorage.setItem('colums', arrDefault.toString())
+      }
+
+      // localStorage.setItem('colums', arr.toString());
 
       if (!(localStorage.getItem('colums')?.split(','))?.length) this.columnsToDisplayWithExpand = this.initialColumnsToDisplayWithExpand;
       else this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;

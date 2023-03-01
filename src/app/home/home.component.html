@@ -2,62 +2,51 @@
 
   <mat-drawer-container class="" [hasBackdrop]="true" style="padding: 0;">
     <mat-drawer #drawer [mode]="'over'">
-       <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="ps-3">
-          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="router-link-active"
-            [routerLink]="[node.url]" routerLinkActive="activeLink" (click)="openSideModule(node.moduleName)">
-            {{node.moduleName}}
+      <div class="sideContainer" style="padding: 0 15px; width: 250px;">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <!-- This is the tree node template for leaf nodes -->
+          <mat-tree-node *matTreeNodeDef="let node" routerLinkActive="router-link-active" [routerLink]="[node.url]"
+            matTreeNodePadding>
+            <!-- use a disabled button to provide padding for tree leaf -->
+            <!-- <button mat-icon-button disabled></button> -->
+            {{node.name}}
           </mat-tree-node>
-          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodeToggle
-            [attr.aria-label]="'Toggle ' + node.title">
+          <!-- This is the tree node template for expandable nodes -->
+          <mat-tree-node [attr.aria-label]="'Toggle ' + node.name" matTreeNodePadding matTreeNodeToggle
+            *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
 
-            {{node.moduleName}}
+            {{node.name}}
+            <button class="btnExpand" mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+              <!-- <svg *ngIf="treeControl.isExpanded(node)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
+              </svg>
 
-            <svg *ngIf="!treeControl.isExpanded(node)"
-              style="color: #146F90; margin-left: 2% !important; margin-top: 1%;" xmlns="http://www.w3.org/2000/svg"
-              width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-              <path
-                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-            </svg>
+              <svg *ngIf="!treeControl.isExpanded(node)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894l6-3z" />
+              </svg> -->
 
-            <svg *ngIf="treeControl.isExpanded(node)"
-              style="color: #146F90; margin-left: 2% !important; margin-top: 1%;" xmlns="http://www.w3.org/2000/svg"
-              width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
-              <path
-                d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-            </svg>
+              <svg *ngIf="!treeControl.isExpanded(node)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path
+                  d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+              </svg>
+
+              <svg *ngIf="treeControl.isExpanded(node)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                <path
+                  d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+              </svg>
+
+
+            </button>
           </mat-tree-node>
+        </mat-tree>
+      </div>
 
-
-        </mat-tree> -->
-        bla bla
-
-        <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-          <mat-tree-node (click)="open(node.title, node.url)" *matTreeNodeDef="let node" matTreeNodePadding
-            routerLinkActive="router-link-active" [routerLink]="[node.url]"> 
-            <img title="{{node.title}}" [src]="node.imagePath" />{{node.title}}
-          </mat-tree-node>
-          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodeToggle
-            [attr.aria-label]="'Toggle ' + node.title">
-            <img title="{{node.title}}" [src]="node.imagePath" class="me-2" />
-
-            {{node.title}}
-
-            <svg *ngIf="!treeControl.isExpanded(node)"
-              style="color: #146F90; margin-left: 2% !important; margin-top: 1%;" xmlns="http://www.w3.org/2000/svg"
-              width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-              <path
-                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-            </svg>
-
-            <svg *ngIf="treeControl.isExpanded(node)"
-              style="color: #146F90; margin-left: 2% !important; margin-top: 1%;" xmlns="http://www.w3.org/2000/svg"
-              width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
-              <path
-                d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-            </svg>
-
-          </mat-tree-node>
-        </mat-tree> -->
     </mat-drawer>
     <mat-drawer-content>
       <div class="row" style="margin: 0; position: fixed; z-index: 999999; width: 100%; background: #fff">
@@ -102,9 +91,9 @@
       </div>
 
       <div class="mx-auto d-flex flex-column mt-4">
-        <ul class="col-12 mt-5 d-flex ">
+        <!-- <ul class="col-12 mt-5 d-flex ">
           <li class="col-3 mx-2 " *ngFor="let element of moduleDatas; let i = index;">
-            <div class="card col-12 mx-3 my-3 mat-elevation-z8"  [@cardFlip]="moduleDatas[i].stateName">
+            <div class="card col-12 mx-3 my-3 mat-elevation-z8" [@cardFlip]="moduleDatas[i].stateName">
               <div class="face back col-12">
                 <div class="text-end m-2 col-11">
                   <svg (click)="cardClicked(i)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="20"
@@ -114,7 +103,7 @@
                   </svg>
                 </div>
 
-                <div class="ms-3 d-flex align-items-center"  [routerLink]="[element.url]" (click)="openModule(element)" 
+                <div class="ms-3 d-flex align-items-center" [routerLink]="[element.url]" (click)="openModule(element)"
                   style="cursor: pointer; height: 130px">
                   <h2>
                     {{element.name}} -- {{element.url}}
@@ -135,9 +124,11 @@
               </div>
             </div>
           </li>
-        </ul>
+        </ul> -->
 
-        <router-outlet></router-outlet>
+        <div class="mt-4">
+          <router-outlet></router-outlet>
+        </div>
 
       </div>
 

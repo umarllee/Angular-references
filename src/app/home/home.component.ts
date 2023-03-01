@@ -1,10 +1,16 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FlatTreeControl } from '@angular/cdk/tree';
+import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource } from '@angular/material/tree';
 import { Router } from '@angular/router';
 
+
+interface FoodNode {
+  name: string;
+  url: string;
+  children?: FoodNode[];
+}
 
 
 @Component({
@@ -31,35 +37,30 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  // private _transformer = (node: any, level: number) => {
-  //   console.log(node)
-  //   return {
-  //     expandable: !!node.subMenus && node.subMenus.length > 0,
-  //     moduleName: node.title,
-  //     url: node.url,
-  //     level: node.id,
-  //   };
-  // };
+  private _transformer = (node: FoodNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      url: node.url,
+      level: level,
+    };
+  };
 
-  // treeControl = new FlatTreeControl<any>(
-  //   node => node.level,
-  //   node => node.expandable,
-  // );
+  treeControl = new FlatTreeControl<any>(
+    node => node.level,
+    node => node.expandable,
+  );
 
-  // treeFlattener = new MatTreeFlattener(
-  //   this._transformer,
-  //   node => node.level,
-  //   node => node.expandable,
-  //   node => node,
-  // );
+  treeFlattener = new MatTreeFlattener(
+    this._transformer,
+    node => node.level,
+    node => node.expandable,
+    node => node.children,
+  );
 
-  // open(title: string, url: string) {
-
-  // }
-
-  // dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
-  // hasChild = (_: number, node: any) => node.expandable;
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+  hasChild = (_: number, node: any) => node.expandable;
+  // hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   openSideModule(name: string) {
 
@@ -129,8 +130,44 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-
+    this.dataSource.data = [
+      {
+        name: 'Table',
+        url: '',
+        children: [
+          { name: 'General tables', url: 'tables' },
+          { name: 'Input search table', url: 'tables/inputTable', },
+          { name: 'Expandable table', url: 'tables/expandableTable', }
+        ],
+      },
+      {
+        name: 'Drop down',
+        url: 'works',
+        children: [],
+      },
+      {
+        name: 'Cards',
+        url: 'cards',
+        children: [],
+      },
+      {
+        name: 'Gallery',
+        url: 'gallery',
+        children: [],
+      },
+      {
+        name: 'Charts',
+        url: 'chart',
+        children: [],
+      },
+      {
+        name: 'Data share',
+        url: 'dataShare',
+        children: [],
+      },
+    ];
   }
+
 
   ngAfterViewInit() {
     // this.dataSource.data = [

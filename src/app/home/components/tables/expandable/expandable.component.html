@@ -92,7 +92,11 @@
       <form (keydown.enter)="$event.preventDefault()" [formGroup]="filterForm" class="" style="padding: 0 !important;">
         <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="">
           <ng-container matColumnDef="expand">
-            <th mat-header-cell *matHeaderCellDef aria-label="row actions" style="width: 100px !important;">&nbsp;</th>
+            <th mat-header-cell *matHeaderCellDef aria-label="row actions" style="width: 100px !important;">
+            <span style="font-size: 15px; font-weight: normal; text-transform: capitalize; ">
+              Expand
+            </span>
+            </th>
             <td mat-cell *matCellDef="let element; let i = dataIndex" style="width: 100px !important;">
               <button mat-icon-button aria-label="expand row " class="expandIcon"
                 (click)="toggleRow(element, i); $event.stopPropagation()">
