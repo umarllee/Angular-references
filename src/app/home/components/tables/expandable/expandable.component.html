@@ -61,7 +61,7 @@
         <path fill-rule="evenodd"
           d="M0 .5A.5.5 0 0 1 .5 0h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 .5Zm4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10A.5.5 0 0 1 4 .5Zm-4 2A.5.5 0 0 1 .5 2h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 4h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 8h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Z" />
       </svg>
-    </button>
+    </button> 
 
     <mat-menu #menu="matMenu">
       <button mat-menu-item *ngFor="let item of menuColumnsList; let i = index" style="text-transform: capitalize; "
@@ -88,7 +88,7 @@
   <div class="row mt-3  mat-elevation-z8 row col-lg-11 mx-auto" style="margin: 0;">
 
 
-    <div id="htmlData" class="  mx-auto expandableTbale" style="margin: 0;">
+    <div id="htmlData" class="  mx-auto expandableTbale" style="margin: 0; padding: 0;">
       <form (keydown.enter)="$event.preventDefault()" [formGroup]="filterForm" class="" style="padding: 0 !important;">
         <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="">
           <ng-container matColumnDef="expand">
@@ -167,38 +167,53 @@
                     </ng-container>
 
                     <ng-container matColumnDef="symbol2">
-                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                      <th mat-header-cell *matHeaderCellDef> Symbol2 </th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol2}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="symbol3">
-                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                      <th mat-header-cell *matHeaderCellDef> Symbol3 </th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol3}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="symbol4">
-                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                      <th mat-header-cell *matHeaderCellDef> Symbol 4 </th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol4}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="symbol5">
-                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                      <th mat-header-cell *matHeaderCellDef> Symbol 5 </th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol5}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="symbol6">
-                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                      <th mat-header-cell *matHeaderCellDef> Symbol 6</th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol6}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="symbol7">
-                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                      <th mat-header-cell *matHeaderCellDef> Symbol 7 </th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol7}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="symbol8">
-                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                      <th mat-header-cell *matHeaderCellDef> Symbol 8 </th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol8}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="symbol9">
+                      <th mat-header-cell *matHeaderCellDef> Symbol 9 </th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol8}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="symbol10">
+                      <th mat-header-cell *matHeaderCellDef> Symbol 10</th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol8}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="symbol11">
+                      <th mat-header-cell *matHeaderCellDef> Symbol 11</th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol8}} </td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

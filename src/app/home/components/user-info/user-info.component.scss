@@ -1,0 +1,62 @@
+
+
+.workWord {
+    color: #908a8a;
+    font-size: 18px;
+    position: relative;
+    border-bottom: 1px dashed #908a8a;
+    padding: 3px 0;
+    font-weight: bolder;
+}
+
+// .workWord::after {
+//     content: "";
+//     position: absolute;
+//     width: 100%;
+//     bottom: 0;
+//     left: 20%;
+//     right: 0;
+//     height: 0.5em;
+//     margin-bottom: 4px;
+//     border-top: 1px solid #908a8a;
+//     z-index: -1;
+// }
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-transform: capitalize;
+    font-size: 15px;
+    // font-weight: bolder;
+    color: #464545;
+}
+
+::ng-deep .mat-tab-label-active {
+    opacity: 1 !important;
+    color: #acdda9;
+    background: none;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: transparent !important;
+}
+
+::ng-deep .mat-tab-label {
+    height: 48px;
+    padding: 0 10px !important;
+    cursor: pointer;
+    box-sizing: border-box;
+    opacity: .6;
+    min-width: 160px;
+    text-align: start !important;
+    display: inline-flex;
+    justify-content: start !important;
+    align-items: center;
+    white-space: nowrap;
+    position: relative;
+}
+
+::ng-deep .mat-tab-header {
+    border-bottom: none !important;
+}

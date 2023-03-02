@@ -9,6 +9,7 @@ import { SkillsComponent } from './home/components/tables/skills.component';
 import { WorksComponent } from './home/components/works/works.component';
 import { HomeComponent } from './home/home.component';
 import { ExpandableComponent } from './home/components/tables/expandable/expandable.component';
+import { UserInfoComponent } from './home/components/user-info/user-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'gallery', component: GalerryComponent },
       { path: 'chart', component: ChartsComponent },
       { path: 'dataShare', component: DataShareComponent },
+      { path: 'user', component: UserInfoComponent },
     ]
   }
 ];

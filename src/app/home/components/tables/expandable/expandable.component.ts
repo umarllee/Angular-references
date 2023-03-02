@@ -25,6 +25,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Hydrogen',
     weight: 1.0079,
     symbol: 'H',
+    symbol2: 'He',
+    symbol3: 'Li',
+    symbol4: 'Be',
+    symbol5: 'B',
+    symbol6: 'C',
+    symbol7: 'N',
+    symbol8: 'O',
     isClicked: false
   },
   {
@@ -32,6 +39,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Helium',
     weight: 4.0026,
     symbol: 'He',
+    symbol2: 'H1',
+    symbol3: 'H2',
+    symbol4: 'H3',
+    symbol5: 'H4',
+    symbol6: 'H5',
+    symbol7: 'H6',
+    symbol8: 'H7',
     isClicked: false,
   },
   {
@@ -39,6 +53,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Lithium',
     weight: 6.941,
     symbol: 'Li',
+    symbol2: 'HA',
+    symbol3: 'HB',
+    symbol4: 'HC',
+    symbol5: 'HD',
+    symbol6: 'HE',
+    symbol7: 'HF',
+    symbol8: 'HG',
     isClicked: false,
   },
   {
@@ -46,6 +67,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Beryllium',
     weight: 9.0122,
     symbol: 'Be',
+    symbol2: 'H',
+    symbol3: 'H',
+    symbol4: 'H',
+    symbol5: 'H',
+    symbol6: 'H',
+    symbol7: 'H',
+    symbol8: 'H',
     isClicked: false,
   },
   {
@@ -53,6 +81,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Boron',
     weight: 10.811,
     symbol: 'B',
+    symbol2: 'H',
+    symbol3: 'H',
+    symbol4: 'H',
+    symbol5: 'H',
+    symbol6: 'H',
+    symbol7: 'H',
+    symbol8: 'H',
     isClicked: false,
   },
   {
@@ -60,6 +95,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Carbon',
     weight: 12.0107,
     symbol: 'C',
+    symbol2: 'H',
+    symbol3: 'H',
+    symbol4: 'H',
+    symbol5: 'H',
+    symbol6: 'H',
+    symbol7: 'H',
+    symbol8: 'H',
     isClicked: false,
   },
   {
@@ -67,6 +109,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Nitrogen',
     weight: 14.0067,
     symbol: 'N',
+    symbol2: 'H',
+    symbol3: 'H',
+    symbol4: 'H',
+    symbol5: 'H',
+    symbol6: 'H',
+    symbol7: 'H',
+    symbol8: 'H',
     isClicked: false,
   },
   {
@@ -74,6 +123,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Oxygen',
     weight: 15.9994,
     symbol: 'O',
+    symbol2: 'H',
+    symbol3: 'H',
+    symbol4: 'H',
+    symbol5: 'H',
+    symbol6: 'H',
+    symbol7: 'H',
+    symbol8: 'H',
     isClicked: false,
   },
   {
@@ -81,6 +137,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Oxygen',
     weight: 15.9994,
     symbol: 'OO',
+    symbol2: 'H',
+    symbol3: 'H',
+    symbol4: 'H',
+    symbol5: 'H',
+    symbol6: 'H',
+    symbol7: 'H',
+    symbol8: 'H',
     isClicked: false,
   },
   {
@@ -88,6 +151,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Oxygen',
     weight: 15.9994,
     symbol: 'OOO',
+    symbol2: 'H',
+    symbol3: 'H',
+    symbol4: 'H',
+    symbol5: 'H',
+    symbol6: 'H',
+    symbol7: 'H',
+    symbol8: 'H',
     isClicked: false,
   },
   {
@@ -95,6 +165,13 @@ const ELEMENT_DATA: any[] = [
     name: 'Fluorine',
     weight: 18.9984,
     symbol: 'F',
+    symbol2: 'H',
+    symbol3: 'H',
+    symbol4: 'H',
+    symbol5: 'H',
+    symbol6: 'H',
+    symbol7: 'H',
+    symbol8: 'H',
     isClicked: false,
   }
 ]
@@ -145,7 +222,7 @@ const ELEMENT_DATANormal2: any[] = [
 export class ExpandableComponent implements OnInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   initialDataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position',];
+  columnsToDisplay = ['name', 'weight', 'symbol', 'position', 'symbol2', 'symbol3', 'symbol5', 'symbol6', 'symbol7', 'symbol8', 'symbol9'];
   columnsToDisplayWithExpand: any[] = [];
   menuColumnsList: any[] = []; // menuda gostermek ucun
   modelColumns: any[] = [];
@@ -513,13 +590,13 @@ export class ExpandableComponent implements OnInit {
 
       console.log(arr)
 
-      if(arr.length){
-         localStorage.setItem('colums', arr.toString());
+      if (arr.length) {
+        localStorage.setItem('colums', arr.toString());
       }
 
-      else{
+      else {
         let arrDefault = ['expand']
-        this.menuColumnsList[this.menuColumnsList.findIndex((x:any) => x.name == 'expand')].isSelect = true;
+        this.menuColumnsList[this.menuColumnsList.findIndex((x: any) => x.name == 'expand')].isSelect = true;
         localStorage.setItem('colums', arrDefault.toString())
       }
 

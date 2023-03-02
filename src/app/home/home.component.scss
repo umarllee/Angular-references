@@ -76,3 +76,12 @@ ul{
   background: transparent;
   color: #acdda9;
 }
+
+
+.mat-tree-node {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  word-wrap: break-word;
+  cursor: pointer;
+}

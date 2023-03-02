@@ -228,7 +228,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   padding: 0;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  min-width: 60px;
+  min-width: 140px;
 }
 
 .expandableTbale::-webkit-scrollbar {
@@ -286,4 +286,14 @@ a {
 
 .selected{
   background-color: #d5f1d5e3;
+}
+
+::ng-deep .cdk-overlay-connected-position-bounding-box {
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  right: 20px !important;
+  flex-direction: column;
+  min-width: 1px;
+  min-height: 1px;
 }

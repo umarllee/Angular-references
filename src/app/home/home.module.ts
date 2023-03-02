@@ -33,22 +33,28 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ExpandableComponent } from './components/tables/expandable/expandable.component';
 import { HyperPopUpComponent } from './components/tables/expandable/hyper-pop-up/hyper-pop-up.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ColumsComponent } from './components/tables/expandable/colums/colums.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
     HomeComponent,
-    SkillsComponent, 
-    WorksComponent, 
-    NavbarComponent, 
+    SkillsComponent,
+    WorksComponent,
+    NavbarComponent,
     NavigationComponent,
-    CardsComponent, 
-    InputTableComponent, 
-    GalerryComponent, 
-    ChartsComponent, 
-    ExpandableComponent, HyperPopUpComponent, ColumsComponent
+    CardsComponent,
+    InputTableComponent,
+    GalerryComponent,
+    ChartsComponent,
+    ExpandableComponent,
+    HyperPopUpComponent,
+    ColumsComponent,
+    UserInfoComponent,
   ],
   imports: [
     CommonModule,
@@ -77,7 +83,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MdbCarouselModule,
     NgChartsModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTabsModule
   ],
 })
 export class HomeModule { }
