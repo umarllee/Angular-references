@@ -32,6 +32,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'C',
     symbol7: 'N',
     symbol8: 'O',
+    date: '10-01-2023',
     isClicked: false
   },
   {
@@ -46,6 +47,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H5',
     symbol7: 'H6',
     symbol8: 'H7',
+    date: '03-03-2023',
     isClicked: false,
   },
   {
@@ -60,6 +62,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'HE',
     symbol7: 'HF',
     symbol8: 'HG',
+    date: '03-10-2023',
     isClicked: false,
   },
   {
@@ -74,6 +77,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H',
     symbol7: 'H',
     symbol8: 'H',
+    date: '03-06-2023',
     isClicked: false,
   },
   {
@@ -88,6 +92,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H',
     symbol7: 'H',
     symbol8: 'H',
+    date: '12-09-2023',
     isClicked: false,
   },
   {
@@ -102,6 +107,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H',
     symbol7: 'H',
     symbol8: 'H',
+    date: '05-05-2023',
     isClicked: false,
   },
   {
@@ -116,6 +122,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H',
     symbol7: 'H',
     symbol8: 'H',
+    date: '08-09-2023',
     isClicked: false,
   },
   {
@@ -130,6 +137,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H',
     symbol7: 'H',
     symbol8: 'H',
+    date: '03-06-2023',
     isClicked: false,
   },
   {
@@ -144,6 +152,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H',
     symbol7: 'H',
     symbol8: 'H',
+    date: '01-08-2023',
     isClicked: false,
   },
   {
@@ -158,6 +167,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H',
     symbol7: 'H',
     symbol8: 'H',
+    date: '03-12-2023',
     isClicked: false,
   },
   {
@@ -172,6 +182,7 @@ const ELEMENT_DATA: any[] = [
     symbol6: 'H',
     symbol7: 'H',
     symbol8: 'H',
+    date: '02-06-2023',
     isClicked: false,
   }
 ]
@@ -222,7 +233,7 @@ const ELEMENT_DATANormal2: any[] = [
 export class ExpandableComponent implements OnInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   initialDataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position', 'symbol2', 'symbol3', 'symbol5', 'symbol6', 'symbol7', 'symbol8', 'symbol9'];
+  columnsToDisplay = ['name', 'weight', 'symbol', 'position', 'symbol2', 'symbol3', 'symbol5', 'symbol6', 'symbol7', 'symbol8', 'date'];
   columnsToDisplayWithExpand: any[] = [];
   menuColumnsList: any[] = []; // menuda gostermek ucun
   modelColumns: any[] = [];
@@ -251,6 +262,9 @@ export class ExpandableComponent implements OnInit {
   isFilter = false;
   isFiles = false;
   isFilesClick = false;
+
+
+  isDirectionRotate = false;
 
   dialogref?: MatDialogRef<HyperPopUpComponent>;
   dialogrefColums?: MatDialogRef<ColumsComponent>;
@@ -368,7 +382,7 @@ export class ExpandableComponent implements OnInit {
 
       if ((localStorage.getItem('colums')?.split(','))?.length) {
         this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
-        this.columnsToDisplayWithExpand.sort();
+        // this.columnsToDisplayWithExpand.sort();
         this.dataSource = this.dataSource;
         this.dataSource.paginator = this.commonPaginator;
         this.isFilter = true;
@@ -377,7 +391,7 @@ export class ExpandableComponent implements OnInit {
       else {
         localStorage.setItem('colums', this.initialColumnsToDisplayWithExpand.toString());
         this.columnsToDisplayWithExpand = (localStorage.getItem('colums')?.split(','))!;
-        this.columnsToDisplayWithExpand.sort();
+        // this.columnsToDisplayWithExpand.sort();
         this.dataSource = this.dataSource;
         this.dataSource.paginator = this.commonPaginator;
       }
@@ -448,8 +462,18 @@ export class ExpandableComponent implements OnInit {
     this.isFiles = !this.isFiles;
   }
 
+  sort() {
+    this.isDirectionRotate = !this.isDirectionRotate;
+  }
+
+  sortData(event: any) {
+    alert();
+  }
+
+
   handleFilter() {
     this.orderRequestData.filters = [];
+    console.log(this.filterForm)
 
     Object.keys(this.filterForm.controls).forEach((key: string) => {
       if (this.filterForm.get(key)?.value.length > 0) {
@@ -477,7 +501,22 @@ export class ExpandableComponent implements OnInit {
     if (filters) {
       filters.forEach((element: any) => {
         dataArr = this.initialDataSource.data.filter((dt: any) => {
-          if (dt[element.key].toString().toLowerCase().includes(element.value.toLowerCase())) return dt
+          console.log(dt[element.key])
+          console.log(new Date(dt[element.key]).toISOString().split('T')[0])
+          // console.log(new Date(dt[element.key]).toISOString())
+
+          // console.log(new Date(dt[element.key]).setDate(new Date(dt[element.key]).getDate() + 1))
+          // console.log(new Date(dt[element.key]).toISOString().split('T')[0])
+          // console.log(new Date(element.value).toISOString().slice(0, 10))
+          // console.log(dt)
+
+
+          if (element.key == 'date') {
+            if (new Date(dt[element.key]).toISOString().slice(0, 10) == new Date(element.value).toISOString().slice(0, 10)) return dt
+          }
+          else {
+            if (dt[element.key].toString().toLowerCase().includes(element.value.toLowerCase())) return dt
+          }
         })
       });
 
@@ -502,8 +541,8 @@ export class ExpandableComponent implements OnInit {
   }
 
   calculateTotals() {
-    this.columnsToDisplayWithExpand.sort();
-    this.columnsToDisplay.sort();
+    // this.columnsToDisplayWithExpand.sort();
+    // this.columnsToDisplay.sort();
     this.totalsArray = [];
 
     for (let i = 1; i < this.columnsToDisplayWithExpand?.length; i++) {
@@ -512,8 +551,11 @@ export class ExpandableComponent implements OnInit {
         typeof (t[this.columnsToDisplayWithExpand[i]]) == 'string' ? this.totals += 0 : this.totals += Number(t[this.columnsToDisplayWithExpand[i]]);
       });
 
-      this.totalsArray.push(this.totals.toFixed(2));
+      if (this.totals) this.totalsArray.push(this.totals.toFixed(2));
+      else this.totalsArray.push('');
     }
+
+    console.log(this.totalsArray)
   }
 
   toggleRow(row: any, indexRow: any) {

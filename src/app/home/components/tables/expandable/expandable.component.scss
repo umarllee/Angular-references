@@ -48,7 +48,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 .expandableTbale {
   overflow: auto !important;
-  max-height: 600px !important;
+  max-height: 490px !important;
   margin: 0;
   // margin-top: -1rem;
 }
@@ -296,4 +296,8 @@ a {
   flex-direction: column;
   min-width: 1px;
   min-height: 1px;
+}
+
+.rotateDirection{
+  transform: rotate(180deg);
 }
