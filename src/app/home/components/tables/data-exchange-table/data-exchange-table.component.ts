@@ -15,6 +15,9 @@ export class DataExchangeTableComponent implements OnInit {
   dataSource = new MatTableDataSource<any>([]);
   dataSourceSecond = new MatTableDataSource<any>([]);
 
+  filterValue: any;
+  filterValueSecond: any;
+
   pageEvent!: PageEvent;
   length?: number;
   lengthVender?: number;
@@ -25,16 +28,23 @@ export class DataExchangeTableComponent implements OnInit {
 
 
   todo = [
-    {id: 1, order: 'Order1', wagon: '1000', disabled: false},
-    {id: 1, order: 'Order1', wagon: '1000', disabled: false},
+    { id: 1, order: '2302-0001', wagon: '737373', overhead: '1212', disabled: false },
+    { id: 1, order: '2302-0001', wagon: '929292', overhead: '2323', disabled: false },
   ];
+
+  initialTodo: any[] = [];
 
   done = [
-    {id: 1, order: 'Order1', wagon: '1000', disabled: false},
-    {id: 1, order: 'Order1', wagon: '1000', disabled: false},
+    { id: 1, order: '2302-0002', wagon: '202020', overhead: '8888', disabled: false },
+    { id: 1, order: '2302-0002', wagon: '121212', overhead: '4343', disabled: false },
+    { id: 1, order: '2302-0002', wagon: '343434', overhead: '9999', disabled: false },
+    { id: 1, order: '2302-0002', wagon: '545454', overhead: '6565', disabled: false },
   ];
 
+  initialDone: any[] = [];
+
   drop(event: CdkDragDrop<any[]>) {
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -45,10 +55,17 @@ export class DataExchangeTableComponent implements OnInit {
         event.currentIndex,
       );
     }
+    this.initialDone = this.done;
+    this.initialTodo = this.todo;
   }
+
   constructor() { }
 
   ngOnInit(): void {
+
+    this.initialTodo = this.todo;
+    this.initialDone = this.done;
+
 
     console.log(JSON.parse(localStorage.getItem('firstTable')!))
     console.log(JSON.parse(localStorage.getItem('secondTable')!))
@@ -90,14 +107,18 @@ export class DataExchangeTableComponent implements OnInit {
     this.dataSourceSecond.paginator = this.commonPaginatorSecond;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(event: any) {
+    if (event.keyCode === 13) {
+      let array = this.initialTodo.filter((o: any) => Object.keys(o).some((k: any) => o[k].toString().toLowerCase().includes(this.filterValue.toLowerCase())))
+      this.todo = array;
+    }
   }
 
-  applyFilterSecond(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceSecond.filter = filterValue.trim().toLowerCase();
+  applyFilterSecond(event: any) {
+    if (event.keyCode === 13) {
+      let array = this.initialDone.filter((o: any) => Object.keys(o).some((k: any) => o[k].toString().toLowerCase().includes(this.filterValueSecond.toLowerCase())))
+      this.done = array;
+    }
   }
 
 
