@@ -38,6 +38,9 @@ import { ColumsComponent } from './components/tables/expandable/colums/colums.co
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSortModule} from '@angular/material/sort';
+import { DragTableComponent } from './components/tables/drag-table/drag-table.component';
+import { DataExchangeTableComponent } from './components/tables/data-exchange-table/data-exchange-table.component';
 
 
 @NgModule({
@@ -55,6 +58,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     HyperPopUpComponent,
     ColumsComponent,
     UserInfoComponent,
+    DragTableComponent,
+    DataExchangeTableComponent,
   ],
   imports: [
     CommonModule,
@@ -84,7 +89,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     NgChartsModule,
     MatDialogModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSortModule
   ],
 })
 export class HomeModule { }

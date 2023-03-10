@@ -10,6 +10,8 @@ import { WorksComponent } from './home/components/works/works.component';
 import { HomeComponent } from './home/home.component';
 import { ExpandableComponent } from './home/components/tables/expandable/expandable.component';
 import { UserInfoComponent } from './home/components/user-info/user-info.component';
+import { DragTableComponent } from './home/components/tables/drag-table/drag-table.component';
+import { DataExchangeTableComponent } from './home/components/tables/data-exchange-table/data-exchange-table.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +21,8 @@ const routes: Routes = [
       { path: 'tables', component: SkillsComponent },
       { path: 'tables/inputTable', component: InputTableComponent },
       { path: 'tables/expandableTable', component: ExpandableComponent },
+      { path: 'tables/dragTable', component: DragTableComponent },
+      { path: 'tables/exchangeTable', component: DataExchangeTableComponent },
       { path: 'works', component: WorksComponent },
       { path: 'cards', component: CardsComponent },
       { path: 'gallery', component: GalerryComponent },

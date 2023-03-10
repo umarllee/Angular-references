@@ -10,6 +10,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 // import * as FileSaver from 'file-saver';
+import { MatSort, Sort } from '@angular/material/sort';
+
 
 interface PeriodicElement {
   name: string;
@@ -239,6 +241,10 @@ export class ExpandableComponent implements OnInit {
   modelColumns: any[] = [];
   modulModel: any[] = [];// localstorage yazib istifade etmek ucun
 
+  @ViewChild('empTbSort') empTbSort = new MatSort();
+  @ViewChild('empTbSortWithObject') empTbSortWithObject = new MatSort();
+
+
   initialColumnsToDisplayWithExpand: any[] = [];
   expandedElement!: PeriodicElement | null;
   constructor(
@@ -349,6 +355,10 @@ export class ExpandableComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.commonPaginator;
+
+    this.dataSource.sort = this.empTbSort;
+    this.dataSource.sort = this.empTbSortWithObject;
+
   }
 
   openPopup(element: any) {
@@ -501,22 +511,16 @@ export class ExpandableComponent implements OnInit {
     if (filters) {
       filters.forEach((element: any) => {
         dataArr = this.initialDataSource.data.filter((dt: any) => {
-          console.log(dt[element.key])
-          console.log(new Date(dt[element.key]).toISOString().split('T')[0])
-          // console.log(new Date(dt[element.key]).toISOString())
-
-          // console.log(new Date(dt[element.key]).setDate(new Date(dt[element.key]).getDate() + 1))
-          // console.log(new Date(dt[element.key]).toISOString().split('T')[0])
-          // console.log(new Date(element.value).toISOString().slice(0, 10))
-          // console.log(dt)
-
 
           if (element.key == 'date') {
-            if (new Date(dt[element.key]).toISOString().slice(0, 10) == new Date(element.value).toISOString().slice(0, 10)) return dt
+            let dArr = element.value.split("-");
+            // let dArr2 = dt[element.key].split("-"); 
+            if (dt[element.key] == dArr[1] + "-" + dArr[2] + "-" + dArr[0]) return dt
           }
           else {
             if (dt[element.key].toString().toLowerCase().includes(element.value.toLowerCase())) return dt
           }
+
         })
       });
 

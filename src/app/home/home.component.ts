@@ -137,14 +137,16 @@ export class HomeComponent implements OnInit {
         children: [
           { name: 'General tables', url: 'tables' },
           { name: 'Input search table', url: 'tables/inputTable', },
-          { name: 'Expandable table', url: 'tables/expandableTable', }
+          { name: 'Expandable table', url: 'tables/expandableTable', },
+          { name: 'Draggable table', url: 'tables/dragTable', },
+          { name: 'Data exchange table', url: 'tables/exchangeTable', },
         ],
       },
       {
         name: 'Drop down',
         url: 'works',
         children: [],
-      },
+      }, 
       {
         name: 'Cards',
         url: 'cards',
