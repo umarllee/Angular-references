@@ -564,7 +564,7 @@ export class ExpandableComponent implements OnInit {
 
   toggleRow(row: any, indexRow: any) {
 
-    if (indexRow == 0) {
+    if (indexRow == 0) { 
       this.dataSource.data[0].dataSourceRow = ELEMENT_DATANormal;
     }
 
@@ -577,7 +577,8 @@ export class ExpandableComponent implements OnInit {
     }
 
     const index = this.expandedElements.findIndex((x: any) => x.position == row.position);
-    if (index === -1) {
+    if (index === -1 && row.dataSourceRow) {
+
       row.isClicked = true;
       this.expandedElements.push(row);
     } else {
@@ -600,6 +601,7 @@ export class ExpandableComponent implements OnInit {
   }
 
   isExpanded(row: any): string {
+    // console.log(row)
     if (
       this.expandedElements.findIndex(x => x.position == row.position) !== -1
     ) {

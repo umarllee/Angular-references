@@ -136,7 +136,8 @@ export class HomeComponent implements OnInit {
         url: '',
         children: [
           { name: 'General tables', url: 'tables' },
-          { name: 'Input search table', url: 'tables/inputTable', },
+          { name: 'Editable table', url: 'tables/inputTable', },
+          { name: 'Search column table', url: 'tables/searchColumn', },
           { name: 'Expandable table', url: 'tables/expandableTable', },
           { name: 'Draggable table', url: 'tables/dragTable', },
           { name: 'Data exchange table', url: 'tables/exchangeTable', },

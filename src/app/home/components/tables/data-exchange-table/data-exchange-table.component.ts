@@ -66,10 +66,6 @@ export class DataExchangeTableComponent implements OnInit {
     this.initialTodo = this.todo;
     this.initialDone = this.done;
 
-
-    console.log(JSON.parse(localStorage.getItem('firstTable')!))
-    console.log(JSON.parse(localStorage.getItem('secondTable')!))
-
     if (!JSON.parse(localStorage.getItem('firstTable')!)) {
 
       this.dataSource.data = [

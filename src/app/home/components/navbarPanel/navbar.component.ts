@@ -17,11 +17,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = JSON.parse(localStorage.getItem('data')!);
-    this.navBarDatas = this.data.navData;
+    this.data ? this.navBarDatas = this.data.navData : '';
   }
 
   openMenu(optionIndex: number) {    
-    this.navOptions = this.data.navData[optionIndex].navOptionData;
+    this.data ? this.navOptions = this.data.navData[optionIndex].navOptionData : '';
     this.select.toArray()[optionIndex].open();
   }
 

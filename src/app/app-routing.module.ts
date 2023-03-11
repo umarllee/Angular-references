@@ -12,6 +12,7 @@ import { ExpandableComponent } from './home/components/tables/expandable/expanda
 import { UserInfoComponent } from './home/components/user-info/user-info.component';
 import { DragTableComponent } from './home/components/tables/drag-table/drag-table.component';
 import { DataExchangeTableComponent } from './home/components/tables/data-exchange-table/data-exchange-table.component';
+import { SearchColumnTableComponent } from './home/components/tables/search-column-table/search-column-table.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'tables', component: SkillsComponent },
       { path: 'tables/inputTable', component: InputTableComponent },
       { path: 'tables/expandableTable', component: ExpandableComponent },
+      { path: 'tables/searchColumn', component: SearchColumnTableComponent },
       { path: 'tables/dragTable', component: DragTableComponent },
       { path: 'tables/exchangeTable', component: DataExchangeTableComponent },
       { path: 'works', component: WorksComponent },

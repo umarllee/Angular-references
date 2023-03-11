@@ -41,6 +41,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSortModule} from '@angular/material/sort';
 import { DragTableComponent } from './components/tables/drag-table/drag-table.component';
 import { DataExchangeTableComponent } from './components/tables/data-exchange-table/data-exchange-table.component';
+import { SearchColumnTableComponent } from './components/tables/search-column-table/search-column-table.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { DataExchangeTableComponent } from './components/tables/data-exchange-ta
     UserInfoComponent,
     DragTableComponent,
     DataExchangeTableComponent,
+    SearchColumnTableComponent,
   ],
   imports: [
     CommonModule,
