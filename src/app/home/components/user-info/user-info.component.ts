@@ -12,4 +12,4 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-}
+} 

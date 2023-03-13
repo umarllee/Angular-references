@@ -3,33 +3,48 @@
 
     <form (keydown.enter)="$event.preventDefault()" [formGroup]="filterForm">
 
-      <div class="mat-elevation-z8 line-container mt-2 mx-auto col-lg-11">
+      <div class="mat-elevation-z8 line-container line-containerNoStatusColumn mt-2 mx-auto col-lg-11">
         <table mat-table [dataSource]="routeData">
+
           <ng-container *ngFor="let column of displayedcommontColumns; let i = index" [matColumnDef]="column">
             <th mat-header-cell *matHeaderCellDef>
               <div class="field">
-                <input (keyup)="handleKeyUp($event)" [formControlName]="column" class="col-lg-7 mx-auto" type="text"
+
+                <span *ngIf="column =='index'">#</span>
+
+                <input *ngIf="column !== 'index' && column !== 'status'" (keyup)="handleKeyUp($event)"
+                  [formControlName]="column" class="col-lg-7 mx-auto" type="text"
                   [placeholder]="(column.charAt(0).toUpperCase() + column.slice(1))" required autocomplete="off"
                   id="CompanyName">
+
+                <!-- <span *ngIf="column =='status'">Status</span> -->
+
               </div>
             </th>
             <td mat-cell *matCellDef="let element; let rowIndex = index" class="hower-td">
-              {{element[column]}}
+              <span *ngIf="column =='index'">
+                {{rowIndex + 1}}
+              </span>
+
+              <span *ngIf="column !='index'">
+                {{element[column]}}
+              </span>
+
             </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedcommontColumns; sticky: true"></tr>
           <tr *matNoDataRow>
-            <th colspan="9">
+            <th colspan="9" class="text-center">
               <span>No rows found</span>
             </th>
           </tr>
           <tr mat-row *matRowDef="let row; columns: displayedcommontColumns;" class="route" (click)="highlight($event)">
           </tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons #excelPag
-          aria-label="Select page of periodic elements">
-        </mat-paginator>
+        <mat-paginator class="mat-paginator-sticky" #commonPag [pageSizeOptions]="[10, 15, 20]" [length]="length"
+        [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons>
+      </mat-paginator>
       </div>
 
     </form>

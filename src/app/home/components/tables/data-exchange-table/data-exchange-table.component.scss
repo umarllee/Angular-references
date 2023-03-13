@@ -7,7 +7,8 @@
 }
 
 .list-container {
-  max-height: 500px !important;
+  max-height: 550px !important;
+  height: 570px !important;
   overflow: auto;
 }
 
@@ -27,17 +28,17 @@
 }
 
 .example-list {
-  border: solid 1px #ccc;
-  min-height: 60px;
-  background: white;
+  // border: solid 1px #ccc;
+  min-height: 420px;
+  background: #fff;
   border-radius: 4px;
   overflow: hidden;
   display: block;
 }
 
 .example-box {
-  padding: 20px 0px;
-  border-bottom: solid 1px #ccc;
+  padding: 10px 0px;
+  border: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: row;
@@ -47,6 +48,10 @@
   cursor: move;
   background: white;
   font-size: 14px;
+}
+
+.example-box:last-child {
+  border-bottom: 1px solid #ccc !important;
 }
 
 .cdk-drag-preview {
@@ -77,5 +82,16 @@
 .cardHeader {
   background: #fff;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  // border-radius: 4px;
+}
+
+
+.cardTitle {
+  font-size: 21px;
+  font-weight: bolder;
+  color: rgb(105, 105, 105);
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
 }

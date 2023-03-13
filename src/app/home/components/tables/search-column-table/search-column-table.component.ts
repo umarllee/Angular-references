@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -10,20 +10,28 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class SearchColumnTableComponent implements OnInit {
   displayedcommontColumns: string[] = [
+    'index',
     'TrackingNo',
     'Status',
     'Countries',
-    'LoadStationName',
+    'LoadStationName', 
     'DestStationName',
     'ContCount',
     'Date',
     'Eta',
-    'RouteId'
+    'RouteId',
+    // 'status',
   ];
 
   routeData: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   initialDataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
-  @ViewChild('excelPag') excelPaginator!: MatPaginator;
+
+  pageEvent!: PageEvent;
+  length?: number;
+  lengthVender?: number;
+  pageSize!: number;
+  pageSizeOptions: number[] = [5, 10, 15, 20];
+  @ViewChild('commonPag') commonPaginator!: MatPaginator;
 
   orderRequestData: any = {
     filters: []
@@ -47,12 +55,12 @@ export class SearchColumnTableComponent implements OnInit {
         DestCountryId: 122,
         DestStationId: 6358,
         DestStationName: "72222 - Ош",
-        Eta: "10 d 2 h",
+        Eta: "1 d 9 h",
         LoadCode: "tr",
         LoadCountry: "Turkey",
         LoadCountryId: 231,
         LoadStationId: -1,
-        LoadStationName: "Biherova 0344-6",
+        LoadStationName: "Biherova 0232-3",
         RouteId: 61,
         Status: "Loaded",
         TrackingNo: "2207-0034", 
@@ -60,14 +68,14 @@ export class SearchColumnTableComponent implements OnInit {
       {
         Color: " #007bff",
         ContCount: 7,
-        Countries: "Turkey / Kyrgyzstan",
-        Date: "2022-07-27",
+        Countries: "Georgia / Ozbekhistan",
+        Date: "2022-08-27",
         DestCode: "kg",
         DestCountry: "Kyrgyzstan",
         DestCountryId: 122,
         DestStationId: 6358,
-        DestStationName: "72222 - Ош",
-        Eta: "10 d 2 h",
+        DestStationName: "71233 - Ош",
+        Eta: "3 d 3 h",
         LoadCode: "tr",
         LoadCountry: "Turkey",
         LoadCountryId: 231,
@@ -80,19 +88,40 @@ export class SearchColumnTableComponent implements OnInit {
       {
         Color: " #007bff",
         ContCount: 7,
-        Countries: "Turkey / Kyrgyzstan",
-        Date: "2022-07-27",
+        Countries: "Turkey / Azerbaijan",
+        Date: "2022-09-27",
         DestCode: "kg",
         DestCountry: "Kyrgyzstan",
         DestCountryId: 122,
         DestStationId: 6358,
-        DestStationName: "72222 - Ош",
-        Eta: "10 d 2 h",
+        DestStationName: "83221 - Ош",
+        Eta: "2 d 2 h",
         LoadCode: "tr",
         LoadCountry: "Turkey",
         LoadCountryId: 231,
         LoadStationId: -1,
-        LoadStationName: "Biherova 0344-6",
+        LoadStationName: "Biherova 0233-9",
+        RouteId: 61,
+        Status: "Loaded",
+        TrackingNo: "2207-0036", 
+      },
+
+      {
+        Color: " #007bff",
+        ContCount: 7,
+        Countries: "Georgia / Azerbaijan",
+        Date: "2022-09-27",
+        DestCode: "kg",
+        DestCountry: "Azerbaijan",
+        DestCountryId: 122,
+        DestStationId: 6358,
+        DestStationName: "83221 - Ош",
+        Eta: "2 d 2 h",
+        LoadCode: "tr",
+        LoadCountry: "Georgia",
+        LoadCountryId: 231,
+        LoadStationId: -1,
+        LoadStationName: "Biherova 0233-9",
         RouteId: 61,
         Status: "Loaded",
         TrackingNo: "2207-0036", 
@@ -100,22 +129,21 @@ export class SearchColumnTableComponent implements OnInit {
  
     ])
 
-    this.routeData.paginator = this.excelPaginator;
-
     this.initialDataSource = this.routeData;
+    this.routeData.paginator = this.commonPaginator;
 
     this.generateForm();
   }
   
 
   highlight(event: any) {
-    [...event.target.parentElement.parentElement.children].forEach(e => {
-      if (e !== event.target.parentElement) {
-        e.style.backgroundColor = '';
-      }
-    });
-    event.target.parentElement.style.backgroundColor = event.target.parentElement.style.backgroundColor === ''
-      ? '#b3ebff' : '';
+    // [...event.target.parentElement.parentElement.children].forEach(e => {
+    //   if (e !== event.target.parentElement) {
+    //     e.style.backgroundColor = '';
+    //   }
+    // });
+    // event.target.parentElement.style.backgroundColor = event.target.parentElement.style.backgroundColor === ''
+    //   ? '#b3ebff' : '';
   }
 
   generateForm() {
@@ -171,13 +199,13 @@ export class SearchColumnTableComponent implements OnInit {
 
       this.routeData = new MatTableDataSource<any>(dataArr);
       this.routeData.data = this.routeData.data;
-      this.routeData.paginator = this.excelPaginator;
+      this.routeData.paginator = this.commonPaginator;
     }
 
     else {
       this.routeData = new MatTableDataSource<any>(this.initialDataSource.data);
       this.routeData.data = this.routeData.data;
-      this.routeData.paginator = this.excelPaginator;
+      this.routeData.paginator = this.commonPaginator;
     }
   }
 
@@ -185,6 +213,10 @@ export class SearchColumnTableComponent implements OnInit {
     if (e.keyCode === 13) {
       this.handleFilter();
     }
+  }
+
+  changeStatus(event: any, element: any) {
+
   }
 
 }
