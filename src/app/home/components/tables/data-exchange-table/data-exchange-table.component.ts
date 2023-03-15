@@ -30,6 +30,7 @@ export class DataExchangeTableComponent implements OnInit {
   filterValueSecond: any;
 
   date: any;
+  dateSecond: any;
   statusId: any = '#4a5759';
   statusIdSecond: any = '#4a5759';
 
@@ -128,7 +129,7 @@ export class DataExchangeTableComponent implements OnInit {
 
     if (tableIndex == 2) {
       let array2 = this.initialDone.filter((o: any) => Object.keys(o).some((k: any) => o[k].toString().toLowerCase().includes(filterData.toLowerCase())))
-    this.done = array2;
+      this.done = array2;
     }
   }
 
@@ -150,13 +151,13 @@ export class DataExchangeTableComponent implements OnInit {
       }
     }
 
-    else if (tableIndex == 2) {
+    else if (tableIndex == 2) { // ikinci table
       if (this.statusIdSecond == '#4a5759') {
         this.done = this.initialDone;
       }
 
       else {
-        this.filterLists(this.statusIdSecond, 2)
+        this.filterLists(this.statusIdSecond, 2);
       }
     }
 
@@ -164,17 +165,17 @@ export class DataExchangeTableComponent implements OnInit {
 
   applyFilterSecond(event: any) {
     if (event.keyCode === 13) {
-      this.filterLists(this.filterValueSecond, 2)
+      this.filterLists(this.filterValueSecond, 2);
     }
   }
 
 
   moveToRight(i: any, element: any) {
-    this.dataSource.data.splice(i, 1)
+    this.dataSource.data.splice(i, 1);
 
-    this.dataSourceSecond.data.push(element)
-    this.dataSource.data = this.dataSource.data
-    this.dataSourceSecond.data = this.dataSourceSecond.data
+    this.dataSourceSecond.data.push(element);
+    this.dataSource.data = this.dataSource.data;
+    this.dataSourceSecond.data = this.dataSourceSecond.data;
 
     localStorage.setItem('firstTable', JSON.stringify(this.dataSource.data));
     localStorage.setItem('secondTable', JSON.stringify(this.dataSourceSecond.data));
@@ -182,21 +183,53 @@ export class DataExchangeTableComponent implements OnInit {
   }
 
   moveToLeft(i: any, element: any) {
-    this.dataSourceSecond.data.splice(i, 1)
+    this.dataSourceSecond.data.splice(i, 1);
 
-    this.dataSource.data.push(element)
-    this.dataSource.data = this.dataSource.data
-    this.dataSourceSecond.data = this.dataSourceSecond.data
+    this.dataSource.data.push(element);
+    this.dataSource.data = this.dataSource.data;
+    this.dataSourceSecond.data = this.dataSourceSecond.data;
     localStorage.setItem('firstTable', JSON.stringify(this.dataSource.data));
     localStorage.setItem('secondTable', JSON.stringify(this.dataSourceSecond.data));
 
   }
 
-  handleFilter() {
+  handleFilter(tableIndex: number) {
+    console.log(this.date)
+    console.log(this.dateSecond)
+    if (tableIndex == 1) {
+      // let array = this.initialTodo.filter((o: any) => Object.keys(o).some((k: any) => o[k].toString().toLowerCase().includes(this.date.toLowerCase())))
+      // this.todo = array;
+      let dataArr: any[] = [];
+      if(this.date){
+        this.initialTodo.filter((dt: any) => {
+          let dArr = this.date.split("-");
+          if (dt.date == dArr[2] + "-" + dArr[1] + "-" + dArr[0])  dataArr.push(dt)
+  
+        });
+        this.todo = dataArr;
+      }
 
-  }
+      else{
+        this.todo = this.initialTodo;
+      }
+      
+    }
 
-  changeStatus(key: any) {
+    if (tableIndex == 2) {
+      let dataArr: any[] = [];
+      if(this.dateSecond){
+        this.initialDone.filter((dt: any) => {
+          let dArr = this.dateSecond.split("-");
+          if (dt.date == dArr[2] + "-" + dArr[1] + "-" + dArr[0])  dataArr.push(dt)
+  
+        });
+        this.done = dataArr;
+      }
+
+      else{
+        this.done = this.initialDone;
+      }
+    }
 
   }
 

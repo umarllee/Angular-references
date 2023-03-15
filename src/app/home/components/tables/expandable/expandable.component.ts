@@ -512,7 +512,7 @@ export class ExpandableComponent implements OnInit {
       filters.forEach((element: any) => {
         dataArr = this.initialDataSource.data.filter((dt: any) => {
 
-          if (element.key == 'date') {
+          if (element.key == 'date') { 
             let dArr = element.value.split("-");
             // let dArr2 = dt[element.key].split("-"); 
             if (dt[element.key] == dArr[1] + "-" + dArr[2] + "-" + dArr[0]) return dt

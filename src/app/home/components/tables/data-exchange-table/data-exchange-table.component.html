@@ -7,7 +7,6 @@
         <div class="pt-2 cardHeader">
           <span class="ps-2  cardTitle"> Order № : 2301-0001</span>
 
-
           <div class="row" style="margin: 0">
             <div class="field col-lg-4">
               <input type="text" [(ngModel)]="filterValue" (keyup)="applyFilter($event)" #input id="search"
@@ -20,8 +19,7 @@
                 <label for="statusId" title="Status" data-title="Status"></label>
                 <mat-form-field class=" col-lg-12">
                   <mat-select [(ngModel)]="statusId" id="statusId" name="statusId">
-                    <mat-option (click)="applyFilterStatus(1)" [value]="status.key"
-                      *ngFor="let status of statuses">
+                    <mat-option (click)="applyFilterStatus(1)" [value]="status.key" *ngFor="let status of statuses">
                       <div class="statusColor me-1" [style.background-color]="status.key"></div> {{status.value }}
                     </mat-option>
                   </mat-select>
@@ -30,9 +28,36 @@
             </div>
 
             <div class="field col-lg-4">
-              <input [(ngModel)]="date" (change)="handleFilter()" type="date" name="date" id="date">
+              <input [(ngModel)]="date" (change)="handleFilter(1)" type="date" name="date" id="date">
             </div>
 
+          </div>
+
+          <div class="row col-lg-12 " style="margin: 0;">
+            <div class="col-lg-1 ">
+              <span class="" style="color: darkorange; font-weight: bolder;">#</span>
+            </div>
+
+            <!-- <div class="col-lg-3">
+              <span class="col-lg-6" style="color: darkorange; font-weight: bolder;">Order № : </span> {{item.order}}
+            </div> -->
+
+            <div class="col-lg-2">
+              <span style="color: darkorange; font-weight: bolder;">Overhead </span>
+            </div>
+
+            <div class="col-lg-2">
+              <span style="color: darkorange; font-weight: bolder;">Wagon № </span>
+            </div>
+
+            <div class="col-lg-3 text-center">
+              <span  style="color: darkorange; font-weight: bolder;"> Date</span>
+
+            </div>
+
+            <div class="col-lg-3 ">
+              <span class="ms-2" style="color: darkorange; font-weight: bolder;">Status</span>
+            </div>
           </div>
         </div>
 
@@ -41,31 +66,27 @@
 
             <div class="row col-lg-12" style="margin: 0;">
               <div class="col-lg-1">
-                <span class="" style="color: darkorange; font-weight: bolder;">{{i+1}}.</span>
-              </div>
-
-              <!-- <div class="col-lg-3">
-                <span class="col-lg-6" style="color: darkorange; font-weight: bolder;">Order № : </span> {{item.order}}
-              </div> -->
-
-              <div class="col-lg-2">
-                <span style="color: darkorange; font-weight: bolder;">Overhead : </span> {{item.overhead}}
+                <span class="">{{i+1}}.</span>
               </div>
 
               <div class="col-lg-2">
-                <span style="color: darkorange; font-weight: bolder;">Wagon № : </span> {{item.wagon}}
+                {{item.overhead}}
               </div>
 
-              <div class="col-lg-4">
-                <span style="color: darkorange; font-weight: bolder;">Status : </span>
+              <div class="col-lg-2">
+                {{item.wagon}}
+              </div>
+
+              <div class="col-lg-3 text-center">
+                {{item.date}}
+              </div>
+
+              <div class="col-lg-3">
                 <div class="statusColor ms-2 " style="width: 0.5rem; height: 0.5rem;"
                   [style.background-color]="item.status"></div> {{item.statusText}}
               </div>
 
-              <div class="col-lg-3 text-center">
-                <span style="color: darkorange; font-weight: bolder;">Date : </span>
-                {{item.date}}
-              </div>
+              
             </div>
 
           </div>
@@ -90,8 +111,7 @@
                 <label for="statusIdSecond" title="Status" data-title="Status"></label>
                 <mat-form-field class=" col-lg-12">
                   <mat-select [(ngModel)]="statusIdSecond" id="statusIdSecond" name="statusIdSecond">
-                    <mat-option (click)="applyFilterStatus(2)" [value]="status.key"
-                      *ngFor="let status of statuses">
+                    <mat-option (click)="applyFilterStatus(2)" [value]="status.key" *ngFor="let status of statuses">
                       <div class="statusColor me-1" [style.background-color]="status.key"></div> {{status.value }}
                     </mat-option>
                   </mat-select>
@@ -100,7 +120,34 @@
             </div>
 
             <div class="field col-lg-4">
-              <input [(ngModel)]="date" (change)="handleFilter()" type="date" name="date" id="date">
+              <input [(ngModel)]="dateSecond" (change)="handleFilter(2)" type="date" name="date" id="date">
+            </div>
+          </div>
+
+          <div class="row col-lg-12 " style="margin: 0;">
+            <div class="col-lg-1 ">
+              <span class="" style="color: darkorange; font-weight: bolder;">#</span>
+            </div>
+
+            <!-- <div class="col-lg-3">
+              <span class="col-lg-6" style="color: darkorange; font-weight: bolder;">Order № : </span> {{item.order}}
+            </div> -->
+
+            <div class="col-lg-2">
+              <span style="color: darkorange; font-weight: bolder;">Overhead </span>
+            </div>
+
+            <div class="col-lg-2">
+              <span style="color: darkorange; font-weight: bolder;">Wagon № </span>
+            </div>
+
+            <div class="col-lg-3 text-center">
+              <span style="color: darkorange; font-weight: bolder;"> Date</span>
+
+            </div>
+
+            <div class="col-lg-3">
+              <span class="ms-2"  style="color: darkorange; font-weight: bolder;">Status</span>
             </div>
           </div>
         </div>
@@ -109,7 +156,7 @@
           <div class="example-box" *ngFor="let item of done; let j = index" cdkDrag>
             <div class="row col-lg-12" style="margin: 0;">
               <div class="col-lg-1">
-                <span class="" style="color: darkorange; font-weight: bolder;">{{j+1}}.</span>
+                <span class="">{{j+1}}.</span>
               </div>
 
               <!-- <div class="col-lg-3">
@@ -117,23 +164,24 @@
               </div> -->
 
               <div class="col-lg-2">
-                <span style="color: darkorange; font-weight: bolder;">Overhead : </span> {{item.overhead}}
+                {{item.overhead}}
               </div>
 
               <div class="col-lg-2">
-                <span style="color: darkorange; font-weight: bolder;">Wagon № : </span> {{item.wagon}}
+                 {{item.wagon}}
               </div>
 
-              <div class="col-lg-4 text-center">
-                <span style="color: darkorange; font-weight: bolder;">Status : </span>
+              <div class="col-lg-3 text-center">
+                
+                {{item.date}}
+              </div>
+
+              <div class="col-lg-3">
                 <div class="statusColor ms-2 " style="width: 0.5rem; height: 0.5rem;"
                   [style.background-color]="item.status"></div> {{item.statusText}}
               </div>
 
-              <div class="col-lg-3 text-center">
-                <span style="color: darkorange; font-weight: bolder;">Date : </span>
-                {{item.date}}
-              </div>
+              
 
             </div>
           </div>
