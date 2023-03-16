@@ -230,16 +230,16 @@ body::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.08);
 }
 
-.label-before {
-  line-height: 20px;
-  font-size: 12px;
-  top: -10px;
-  background: #fff;
-  border-radius: 5px;
-  padding: 0 6px;
-  left: 19px;
-  border: 0.5px solid #154d5325;
-}
+// .label-before {
+//   line-height: 20px;
+//   font-size: 12px;
+//   top: -10px;
+//   background: #fff;
+//   border-radius: 5px;
+//   padding: 0 6px;
+//   left: 19px;
+//   border: 0.5px solid #154d5325;
+// }
 
 
 .field {
@@ -251,13 +251,13 @@ body::-webkit-scrollbar-thumb {
   label::before {
     content: attr(title);
     position: absolute;
-    top: 1px;
-    left: 25px;
+    top: -30px;
+    left: 15px;
     line-height: 36px;
-    font-size: 16px;
+    font-size: 15px;
     color: #777;
     transition: 300ms all;
-    background-color: #fdfeff;
+    // background-color: #fdfeff;
   }
 
   input,
@@ -279,23 +279,23 @@ body::-webkit-scrollbar-thumb {
       border-color: #136481;
     }
 
-    &:valid+label::before {
-      // @extend .label-before;
-      // content: attr(data-title);
-    }
+    // &:valid+label::before {
+    //   // @extend .label-before;
+    //   // content: attr(data-title);
+    // }
 
-    &:focus+label::before {
-      // @extend .label-before;
-      color: #136481;
-      border-color: #136481;
-    }
+    // &:focus+label::before {
+    //   // @extend .label-before;
+    //   color: #136481;
+    //   border-color: #136481;
+    // }
 
-    &:disabled+label::before {
-      // @extend .label-before;
-      color: #136481;
-      border-color: #136481;
+    // &:disabled+label::before {
+    //   // @extend .label-before;
+    //   color: #136481;
+    //   border-color: #136481;
 
-    }
+    // }
   }
    textarea {
     width: 100%;
@@ -314,41 +314,41 @@ body::-webkit-scrollbar-thumb {
       border-color: #136481;
     }
 
-    &:valid+label::before {
-      // @extend .label-before;
-      // content: attr(data-title);
-    }
+    // &:valid+label::before {
+    //   // @extend .label-before;
+    //   // content: attr(data-title);
+    // }
 
-    &:focus+label::before {
-      // @extend .label-before;
-      color: #136481;
-      border-color: #136481;
-    }
+    // &:focus+label::before {
+    //   // @extend .label-before;
+    //   color: #136481;
+    //   border-color: #136481;
+    // }
 
-    &:disabled+label::before {
-      // @extend .label-before;
-      color: #136481;
-      border-color: #136481;
+    // &:disabled+label::before {
+    //   // @extend .label-before;
+    //   color: #136481;
+    //   border-color: #136481;
 
-    }
+    // }
   }
 
 }
 
-.field label::before {
-  content: attr(title);
-  position: absolute;
-  top: -12px;
-  left: 15px;
-  line-height: 10px;
-  font-size: 12px;
-  color: #777;
-  padding: 5px 6px;
-  transition: 300ms all;
-  border-radius: 5px;
-  background-color: #FFF !important;
-  border: 0.5px solid rgb(37 106 131 / 59%);
-}
+// .field label::before {
+//   content: attr(title);
+//   position: absolute;
+//   top: -12px;
+//   left: 15px;
+//   line-height: 10px;
+//   font-size: 12px;
+//   color: #777;
+//   padding: 5px 6px;
+//   transition: 300ms all;
+//   border-radius: 5px;
+//   background-color: #FFF !important;
+//   border: 0.5px solid rgb(37 106 131 / 59%);
+// }
 
 
 .select .field{
@@ -359,17 +359,17 @@ body::-webkit-scrollbar-thumb {
 .select .field label::before {
   content: attr(title);
   position: absolute;
-  top: 10px;
+  top: -2px;
   z-index: 99;
-  left: 15px;
+  left: 10px;
   line-height: 10px;
-  font-size: 12px;
+  font-size: 15px;
   color: #777;
   padding: 5px 6px;
   transition: 300ms all;
   border-radius: 5px;
-  background-color: #FFF !important;
-  border: 0.5px solid #154d5325;
+  // background-color: #FFF !important;
+  // border: 0.5px solid #154d5325;
 }
 
 .new {
