@@ -13,6 +13,7 @@ import { UserInfoComponent } from './home/components/user-info/user-info.compone
 import { DragTableComponent } from './home/components/tables/drag-table/drag-table.component';
 import { DataExchangeTableComponent } from './home/components/tables/data-exchange-table/data-exchange-table.component';
 import { SearchColumnTableComponent } from './home/components/tables/search-column-table/search-column-table.component';
+import { ExportFilesComponent } from './home/components/export-files/export-files.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'chart', component: ChartsComponent },
       { path: 'dataShare', component: DataShareComponent },
       { path: 'user', component: UserInfoComponent },
+      { path: 'export', component: ExportFilesComponent },
     ]
   }
 ];

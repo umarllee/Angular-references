@@ -121,6 +121,15 @@ export class HomeComponent implements OnInit {
 
     },
 
+    {
+      name: 'Export files',
+      desc: 'Export html to files!',
+      url: 'export',
+      stateName: 'default',
+      // navData: [{ navName: 'Galery', navOptionData: [{ data: 'optGalery1' }, { data: 'optGalery2' }, { data: 'optGalery3' },] }, { navName: 'Order', navOptionData: [{ data: 'optOrder1' }, { data: 'optOrder2' }, { data: 'optOrder3' },] }, { navName: 'Contact', navOptionData: [{ data: 'optContact1' }, { data: 'optContact2' }, { data: 'optContact3' },] }],
+
+    },
+
   ]
 
 
@@ -141,6 +150,7 @@ export class HomeComponent implements OnInit {
           { name: 'Expandable table', url: 'tables/expandableTable', },
           { name: 'Draggable table', url: 'tables/dragTable', },
           { name: 'Data exchange table', url: 'tables/exchangeTable', },
+          
         ],
       },
       {
@@ -166,6 +176,11 @@ export class HomeComponent implements OnInit {
       {
         name: 'Data share',
         url: 'dataShare',
+        children: [],
+      },
+      {
+        name: 'Export document',
+        url: 'export',
         children: [],
       },
     ];

@@ -858,3 +858,13 @@ background-color: cornflowerblue;
   width: 2rem;
   border-radius: 2px;
 }
+
+
+@page {
+  size: 210mm 297mm;
+  /* auto is the initial value */
+  size: portrait;
+  /* auto is the initial value */
+  margin: 30mm 10mm;
+  /* this affects the margin in the printer settings */
+}

@@ -42,6 +42,8 @@ import {MatSortModule} from '@angular/material/sort';
 import { DragTableComponent } from './components/tables/drag-table/drag-table.component';
 import { DataExchangeTableComponent } from './components/tables/data-exchange-table/data-exchange-table.component';
 import { SearchColumnTableComponent } from './components/tables/search-column-table/search-column-table.component';
+import { ExportFilesComponent } from './components/export-files/export-files.component';
+import { NgxPrintElementModule } from 'ngx-print-element';
 
 
 @NgModule({
@@ -62,6 +64,7 @@ import { SearchColumnTableComponent } from './components/tables/search-column-ta
     DragTableComponent,
     DataExchangeTableComponent,
     SearchColumnTableComponent,
+    ExportFilesComponent,
   ],
   imports: [
     CommonModule,
@@ -92,7 +95,8 @@ import { SearchColumnTableComponent } from './components/tables/search-column-ta
     MatDialogModule,
     MatSidenavModule,
     MatTabsModule,
-    MatSortModule
+    MatSortModule,
+    NgxPrintElementModule,
   ],
 })
 export class HomeModule { }
