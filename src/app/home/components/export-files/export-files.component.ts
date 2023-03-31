@@ -58,7 +58,7 @@ export class ExportFilesComponent implements OnInit {
     // console.log(frame)
     // frame!.contentWindow.print(); 
 
-    window.print();
+    // window.print();
 
     // var headstr = "<html><head><title></title></head><body>";
     // var footstr = "</body>";
@@ -68,6 +68,15 @@ export class ExportFilesComponent implements OnInit {
     // window.print();
     // document.body.innerHTML = oldstr;
     // return false;
+
+    var divContents = document.getElementById("content")!.innerHTML;
+    var a = window.open('', '', 'height=1000, width=1000');
+    a!.document.write('<html>');
+    a!.document.write('<body > <h1>Div contents are <br>');
+    a!.document.write(divContents);
+    a!.document.write('</body></html>');
+    a!.document.close();
+    a!.print();
   }
 
 
