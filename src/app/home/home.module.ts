@@ -44,6 +44,7 @@ import { DataExchangeTableComponent } from './components/tables/data-exchange-ta
 import { SearchColumnTableComponent } from './components/tables/search-column-table/search-column-table.component';
 import { ExportFilesComponent } from './components/export-files/export-files.component';
 import { NgxPrintElementModule } from 'ngx-print-element';
+import { GridComponent } from './components/grid/grid.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { NgxPrintElementModule } from 'ngx-print-element';
     DataExchangeTableComponent,
     SearchColumnTableComponent,
     ExportFilesComponent,
+    GridComponent,
   ],
   imports: [
     CommonModule,

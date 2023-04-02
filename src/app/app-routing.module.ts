@@ -14,6 +14,7 @@ import { DragTableComponent } from './home/components/tables/drag-table/drag-tab
 import { DataExchangeTableComponent } from './home/components/tables/data-exchange-table/data-exchange-table.component';
 import { SearchColumnTableComponent } from './home/components/tables/search-column-table/search-column-table.component';
 import { ExportFilesComponent } from './home/components/export-files/export-files.component';
+import { GridComponent } from './home/components/grid/grid.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: 'dataShare', component: DataShareComponent },
       { path: 'user', component: UserInfoComponent },
       { path: 'export', component: ExportFilesComponent },
+      { path: 'grid', component: GridComponent },
     ]
   }
 ];

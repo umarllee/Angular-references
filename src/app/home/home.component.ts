@@ -183,6 +183,11 @@ export class HomeComponent implements OnInit {
         url: 'export',
         children: [],
       },
+      {
+        name: 'Grid modules',
+        url: 'grid',
+        children: [],
+      },
     ];
   }
 
