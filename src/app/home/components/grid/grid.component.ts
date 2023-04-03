@@ -12,4 +12,23 @@ export class GridComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cards = [
+    {
+      title: 'Document',
+      desc: 'lorem ipsum',
+      url: '../../../../assets/document.svg'
+    },
+
+    {
+      title: 'Settings',
+      desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui, repellendus.',
+      url: '../../../../assets/settings.svg',
+    },
+    {
+      title: 'Test',
+      desc: 'test lorem ipsum',
+      url: '',
+    },
+  ]
+
 }
