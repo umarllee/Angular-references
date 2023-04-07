@@ -2,16 +2,23 @@
 
     <div class="containerMain">
 
-        <div class="flip-card" *ngFor="let item of cards">
+        <div class="flip-card " *ngFor="let item of cards; let i = index"
+            [ngClass]="{'turn': (isFlip === true && i == indexCard), 'turnBack': (isFlip === false && i == indexCard)}">
             <div class="flip-card-inner">
                 <div class="front" title="{{item.title}}" [style.background-image]="'url(' + item.url + ')'"
                     style="background-size: 100% 60%; background-repeat: no-repeat;background-position-y: 17px; ">
+                    <div class="clickBtn" [style.background-color]="item.color" (click)="flipCard(i)"> i </div>
+
                     <div class="row justify-content-end" style="margin: 0;">
                         <!-- <div class="mt-2 bg-danger card-pattern"></div> -->
                     </div>
+
+                    <div class="cardFooter" [style.background-color]="item.color"> {{item.title}}</div>
                 </div>
                 <div class="back">
-                    <div class="">
+                    <div class="clickBtn" [style.background-color]="item.color" (click)="flipCard(i)"> i </div>
+
+                    <div class="" style="margin: auto auto;" [style.color]="item.color">
                         {{item.desc}}
                     </div>
                 </div>

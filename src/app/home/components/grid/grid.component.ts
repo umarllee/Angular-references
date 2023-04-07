@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 }) 
 export class GridComponent implements OnInit {
 
+  isFlip = false;
+  indexCard = -1;
   constructor() { }
 
   ngOnInit(): void {
@@ -16,19 +18,34 @@ export class GridComponent implements OnInit {
     {
       title: 'Document',
       desc: 'lorem ipsum',
-      url: '../../../../assets/document.svg'
+      url: '../../../../assets/document.svg',
+      color: '#85e67f',
     },
 
     {
       title: 'Settings',
       desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui, repellendus.',
       url: '../../../../assets/settings.svg',
+      color: '#ff6b35',
     },
     {
-      title: 'Test',
-      desc: 'test lorem ipsum',
-      url: '',
+      title: 'Transfer',
+      desc: 'transfer lorem ipsum',
+      url: '../../../../assets/transfer.svg',
+      color: '#b5179e',
+    },
+
+    {
+      title: 'Information',
+      desc: 'Information lorem ipsum',
+      url: '../../../../assets/info.svg',
+      color: '#ffaa00',
     },
   ]
+
+  flipCard(index: number){
+    this.isFlip = !this.isFlip;
+    this.indexCard = index;
+  }
 
 }

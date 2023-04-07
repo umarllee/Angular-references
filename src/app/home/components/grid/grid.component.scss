@@ -1,6 +1,6 @@
 .containerMain {
     display: grid;
-    grid-template-columns: auto auto auto auto ;
+    grid-template-columns: auto auto auto auto;
     // background-color: rosybrown;
     grid-gap: 20px;
     padding: 20px
@@ -37,8 +37,45 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.flip-card:hover .flip-card-inner {
+.turn .flip-card-inner{
     transform: rotateY(180deg);
+    animation: turnCard 1s ;
+}
+
+@keyframes turnCard{
+    0%{
+        transform: rotateY(0deg);
+    }
+
+    100%{
+        transform: rotateY(180deg);
+    }
+}
+
+.turnBack .flip-card-inner{
+    transform: rotateY(0deg);
+    animation: turnCardBack 1s ;
+}
+
+@keyframes turnCardBack{
+    0%{
+        transform: rotateY(180deg);
+    }
+
+    100%{
+        transform: rotateY(0deg);
+    }
+}
+
+.clickBtn{
+    color: #fff;
+    width: 25px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: auto;
 }
 
 .front,
@@ -59,32 +96,34 @@
     color: black;
 }
 
-.front::after {
-    content: attr(title);
-    color: #4f4f4f;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bolder;
-    line-height: 40px;
-    color: #fff;
-    background-color: #ACDDA9;
-    height: 40px;
-    width: 100%;
-    position: fixed;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    bottom: 0;
-}
+// .front::after {
+//     content: attr(title);
+//     color: #4f4f4f;
+//     text-align: center;
+//     font-size: 22px;
+//     font-weight: bolder;
+//     line-height: 40px;
+//     color: #fff; 
+//     // background-color: attr(colors);
+//     height: 40px;
+//     width: 100%;
+//     position: fixed;
+//     border-top-right-radius: 10px;
+//     border-top-left-radius: 10px;
+//     bottom: 0;
+// }
 
 .back {
     background-color: #f5f4f4;
-    color: #ACDDA9;
+    color: #85e67f;
     font-size: 17px;
     text-align: center;
     transform: rotateY(180deg);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 }
 
 .card-pattern {
@@ -100,4 +139,20 @@
     font-size: 20px;
     color: #fff;
 
+}
+
+.cardFooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #4f4f4f;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bolder;
+    line-height: 40px;
+    color: #fff;
+    // background-color: attr(colors);
+    height: 40px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
