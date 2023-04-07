@@ -188,6 +188,17 @@ export class HomeComponent implements OnInit {
         url: 'grid',
         children: [],
       },
+      {
+        name: 'Form components',
+        url: 'formComponent',
+        children: [],
+      },
+
+      {
+        name: 'Animations',
+        url: 'animation',
+        children: [],
+      },
     ];
   }
 
@@ -226,7 +237,6 @@ export class HomeComponent implements OnInit {
   }
 
   openModule(element: any) {
-    // this.router.navigate([`${element.url}`])
     localStorage.setItem('data', JSON.stringify(element))
   }
 

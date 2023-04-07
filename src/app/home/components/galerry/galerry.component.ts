@@ -11,5 +11,5 @@ export class GalerryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
 }

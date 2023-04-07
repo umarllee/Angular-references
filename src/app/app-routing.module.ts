@@ -15,6 +15,8 @@ import { DataExchangeTableComponent } from './home/components/tables/data-exchan
 import { SearchColumnTableComponent } from './home/components/tables/search-column-table/search-column-table.component';
 import { ExportFilesComponent } from './home/components/export-files/export-files.component';
 import { GridComponent } from './home/components/grid/grid.component';
+import { FormComponentsComponent } from './home/components/form-components/form-components.component';
+import { AnimationsComponent } from './home/components/animations/animations.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,6 +37,8 @@ const routes: Routes = [
       { path: 'user', component: UserInfoComponent },
       { path: 'export', component: ExportFilesComponent },
       { path: 'grid', component: GridComponent },
+      { path: 'formComponent', component: FormComponentsComponent },
+      { path: 'animation', component: AnimationsComponent },
     ]
   }
 ];

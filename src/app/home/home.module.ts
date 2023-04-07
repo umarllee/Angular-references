@@ -45,6 +45,8 @@ import { SearchColumnTableComponent } from './components/tables/search-column-ta
 import { ExportFilesComponent } from './components/export-files/export-files.component';
 import { NgxPrintElementModule } from 'ngx-print-element';
 import { GridComponent } from './components/grid/grid.component';
+import { FormComponentsComponent } from './components/form-components/form-components.component';
+import { AnimationsComponent } from './components/animations/animations.component';
 
 
 @NgModule({
@@ -67,6 +69,8 @@ import { GridComponent } from './components/grid/grid.component';
     SearchColumnTableComponent,
     ExportFilesComponent,
     GridComponent,
+    FormComponentsComponent,
+    AnimationsComponent,
   ],
   imports: [
     CommonModule,
