@@ -1,15 +1,21 @@
 <div class="py-4">
-
+    <h3>Checkboxes</h3>
     <div class="row" style="margin: 0;">
-        <div class="col-lg-3 ">
-
-            <span class="switchery switchery-default active">
-                <input type="checkbox" (change)="clickInput()" data-size="small" [(ngModel)]="value">
-                <small></small>
+        <div class="col-lg-1 ">
+            <span class="switchery switchery-default " [ngClass]="{'active': value == true, 'deactive': value== false}">
+                <input type="checkbox" data-size="small" [(ngModel)]="value">
+                <small (click)="this.value = !this.value"></small>
             </span>
-
-            {{value}}
         </div>
+
+        <div class="col-lg-1 lineCheckBox">
+            <input type="checkbox" style="display: none;" [(ngModel)]="checkLineValue" id="md_checkbox_2"
+                class="chk-col-success" checked="">
+            <label for="md_checkbox_2"> Checked </label>
+        </div>
+
+        <!-- s -->
+
     </div>
 
 

@@ -1,5 +1,5 @@
 li {
-  list-style:  none;
+  list-style: none;
   font-size: 16px;
 }
 
@@ -28,35 +28,35 @@ li {
   border-radius: 5px;
   height: 180px;
   // cursor: pointer;
-  position: relative; 
+  position: relative;
   transform-style: preserve-3d;
   border: 1px solid #99c597;
 }
 
 .face {
-  position: absolute;  
+  position: absolute;
   border-radius: inherit;
   backface-visibility: hidden;
 }
- 
+
 .front {
   transform: rotateY(180deg);
 }
- 
 
-ul{
+
+ul {
   flex-wrap: wrap;
   max-width: 1500px !important;
   margin: 0;
   padding: 0;
-  list-style:  none;
+  list-style: none;
 }
 
-.col-3{
+.col-3 {
   width: 23.5%;
 }
 
-.btnToggle{
+.btnToggle {
   padding: 3px 5px;
   border: none;
   color: #fff;
@@ -68,7 +68,7 @@ ul{
   background: #fff;
 }
 
-.btnExpand{
+.btnExpand {
   border: none;
   outline: none;
   margin-left: 5px;
@@ -84,4 +84,8 @@ ul{
   flex: 1;
   word-wrap: break-word;
   cursor: pointer;
+}
+
+::ng-deep .mat-drawer {
+  overflow: hidden !important;
 }
