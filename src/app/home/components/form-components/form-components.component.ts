@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { increment, decrement, reset } from '../../state/counter.actions';
+
 
 @Component({
   selector: 'app-form-components',
@@ -6,8 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-components.component.scss']
 })
 export class FormComponentsComponent implements OnInit {
-
-  constructor() { }
+  count$: Observable<number>;
+  
+  constructor(private store: Store<{ count: number }>) {
+    this.count$ = store.select('count');
+  }
 
   value: any ;
   checkLineValue: any ;
@@ -21,5 +28,12 @@ export class FormComponentsComponent implements OnInit {
     console.log(this.dateData)
   }
 
+  increment() {
+    this.store.dispatch(increment());
+  }
+
+  decrement() {
+    this.store.dispatch(decrement());
+  }
 
 }
