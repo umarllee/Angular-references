@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+// import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { increment, decrement, reset } from '../../state/counter.actions';
+// import { increment, decrement, reset } from '../../state/counter.actions';
 
 
 @Component({
@@ -10,10 +10,12 @@ import { increment, decrement, reset } from '../../state/counter.actions';
   styleUrls: ['./form-components.component.scss']
 })
 export class FormComponentsComponent implements OnInit {
-  count$: Observable<number>;
+  // count$: Observable<number>;
   
-  constructor(private store: Store<{ count: number }>) {
-    this.count$ = store.select('count');
+  // constructor(private store: Store<{ count: number }>) {
+  //   this.count$ = store.select('count');
+  // }
+  constructor() {
   }
 
   value: any ;
@@ -29,11 +31,11 @@ export class FormComponentsComponent implements OnInit {
   }
 
   increment() {
-    this.store.dispatch(increment());
+    // this.store.dispatch(increment());
   }
 
   decrement() {
-    this.store.dispatch(decrement());
+    // this.store.dispatch(decrement());
   }
 
 }

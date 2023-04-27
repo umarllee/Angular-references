@@ -49,9 +49,6 @@ import { FormComponentsComponent } from './components/form-components/form-compo
 import { AnimationsComponent } from './components/animations/animations.component';
 
 
-import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './state/counter.reducer';
-
 @NgModule({
   declarations: [
     HomeComponent,
@@ -106,7 +103,7 @@ import { counterReducer } from './state/counter.reducer';
     MatTabsModule,
     MatSortModule,
     NgxPrintElementModule,
-    StoreModule.forRoot({ count: counterReducer })
+    ReactiveFormsModule ,
   ],
 })
 export class HomeModule { }

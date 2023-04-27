@@ -20,7 +20,6 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
-    "@ngrx/store": "^15.4.0",
     "@syncfusion/ej2-angular-spreadsheet": "^20.2.40-ngcc",
     "@types/file-saver": "^2.0.5",
     "bootstrap": "^5.2.0",

@@ -254,7 +254,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   border-radius: 3px;
 }
 
-.rowTable::-webkit-scrollbar-thumb {
+.rowTable::-webkit-scrollbar-thumb { 
   background-color: #898989 !important;
   border-radius: 3px;
 }
@@ -312,4 +312,4 @@ a {
   min-height: 64px;
   position: relative;
   max-height: 435px;
-}
+} 

@@ -13,6 +13,7 @@ import { DataShareComponent } from './dataShare/data-share.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
+// import { StoreModule } from '@ngrx/store';
 // import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     FormsModule,
     ReactiveFormsModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    // StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
