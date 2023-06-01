@@ -47,7 +47,11 @@ import { NgxPrintElementModule } from 'ngx-print-element';
 import { GridComponent } from './components/grid/grid.component';
 import { FormComponentsComponent } from './components/form-components/form-components.component';
 import { AnimationsComponent } from './components/animations/animations.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './store/counter.reducer';
 
+// import { StoreModule } from '@ngrx/store';
+// import { counterReducer } from './state/counter.reducer';
 
 @NgModule({
   declarations: [
@@ -103,7 +107,8 @@ import { AnimationsComponent } from './components/animations/animations.componen
     MatTabsModule,
     MatSortModule,
     NgxPrintElementModule,
-    ReactiveFormsModule ,
+    StoreModule.forRoot({ count: counterReducer })
+    // StoreModule.forRoot({ count: counterReducer })
   ],
 })
 export class HomeModule { }

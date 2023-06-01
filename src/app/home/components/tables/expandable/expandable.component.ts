@@ -418,7 +418,6 @@ export class ExpandableComponent implements OnInit {
   }
 
   Pdf() {
-
     let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA).then((canvas) => {
       let fileWidth = 208;

@@ -66,7 +66,7 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item *ngFor="let item of menuColumnsList; let i = index" style="text-transform: capitalize; "
         (click)="chooseColumn($event, item.name, item.isSelect, i)" [ngClass]="{'selected': item.isSelect === true}">
-
+ 
         <svg *ngIf="item.isSelect" style="color: #a0cf9d" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
           fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
           <path
